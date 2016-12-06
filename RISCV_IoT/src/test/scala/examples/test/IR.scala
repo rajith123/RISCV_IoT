@@ -1,11 +1,12 @@
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class IRTests(c: IR) extends Tester(c) {
-  val test_in = 119
+  
   for (t <- 0 until 4) {
+    val test_in = rnd.nextInt(32)
     poke(c.io.IR_in,     test_in)
     step(1)
-    expect(c.io.IR_out, (test_in << t) & 0xFFFF)
+    expect(c.io.IR_out, test_in)
   }
 }
 

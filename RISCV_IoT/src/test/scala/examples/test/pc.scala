@@ -2,7 +2,7 @@ import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class pcTests(c: pc) extends PeekPokeTester(c) {
   for (t <- 0 until 1) {
-    val rnd0 = rnd.nextInt(c.n)
+    val rnd0 = rnd.nextInt(32)
 
     poke(c.io.pc_in, rnd0)
     step(1)

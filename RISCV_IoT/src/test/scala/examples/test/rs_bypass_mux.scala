@@ -1,10 +1,11 @@
+package core
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class rs_bypass_muxTests(c: rs_bypass_mux) extends PeekPokeTester(c) {
   for (s0 <- 0 until 2) {
       for(i0 <- 0 until 2) {
         for(i1 <- 0 until 2) {
-		  poke(c.io.rs_bypass_mux_sel, s1 << 1 | s0)
+		  poke(c.io.rs_bypass_mux_sel, s0)
 		  poke(c.io.rs, i0)
 		  poke(c.io.bypass, i1)
 		  step(1)

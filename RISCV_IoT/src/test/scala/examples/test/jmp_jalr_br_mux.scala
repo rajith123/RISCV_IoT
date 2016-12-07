@@ -1,10 +1,11 @@
+package core
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
-class pc_muxTests(c: jmp_br_jalr_mux) extends PeekPokeTester(c) {
+class jmp_br_jalr_muxTests(c: jmp_br_jalr_mux) extends PeekPokeTester(c) {
   for (s0 <- 0 until 2) {
       for(i0 <- 0 until 2) {
         for(i1 <- 0 until 2) {
-		  poke(c.io.pc_sel, s1 << 1 | s0)
+		  poke(c.io.jmp_br_jalr_mux_sel, s0)
 		  poke(c.io.br_jmp, i0)
 		  poke(c.io.jalr, i1)
 		  step(1)

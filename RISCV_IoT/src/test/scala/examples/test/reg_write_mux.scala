@@ -1,3 +1,4 @@
+package core
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class reg_write_muxTests(c: reg_write_mux) extends PeekPokeTester(c) {
@@ -11,10 +12,9 @@ class reg_write_muxTests(c: reg_write_mux) extends PeekPokeTester(c) {
               poke(c.io.data_mem, i0)
               poke(c.io.alu_out, i1)
               poke(c.io.pc_4, i2)
-              poke(c.io.alu_out, i3)
               step(1)
               val out = if(s1 == 1) {
-                          if (s0 == 1) i3 else i2
+                          if (s0 == 1) i1 else i2
                         } else {
                           if (s0 == 1) i1 else i0 
                         }

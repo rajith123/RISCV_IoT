@@ -1,3 +1,4 @@
+package core
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class alu_rs2_muxTests(c: alu_rs2_mux) extends PeekPokeTester(c) {

@@ -1,3 +1,4 @@
+package core
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class pcTests(c: pc) extends PeekPokeTester(c) {

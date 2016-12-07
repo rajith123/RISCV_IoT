@@ -1,3 +1,5 @@
+package core
+
 import chisel3._
 
 class PC4 extends Module {

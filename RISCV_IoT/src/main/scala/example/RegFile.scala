@@ -1,6 +1,7 @@
 package core
 
 import chisel3._
+import chisel3.core.Bool
 
 class RegFile extends Module {
   val io = IO(new Bundle {
@@ -9,18 +10,18 @@ class RegFile extends Module {
     	val rs_in_adr = Input(UInt(width=4))
     	val rs1_out_addr = Input(UInt(width=4))
 	val rs2_out_addr = Input(UInt(width=4))
-	val rs1_out_data = Output(Uint(width=32))
-	val rs2_out_data = Output(Uint(width=32))
-	val rs_in_data = Input(Uint(width=32))
-	val wen = Input(Uint(width=1))
+	val rs1_out_data = Output(UInt(width=32))
+	val rs2_out_data = Output(UInt(width=32))
+	val rs_in_data = Input(UInt(width=32))
+	val wen = Input(UInt(width=1))
   })
-  val regFile = Vec.fill(regDepth) { Reg(init = Uint(0, width = regWidth))}
+  val regFile = Vec.fill(io.regDepth) { Reg(init = UInt(0, width = io.regWidth))}
   
-  rs1_out_data := regFile(rs1_out_addr)
-  rs2_out_data := regFile(rs2_out_addr)
-  
-  when (wen){
-	regFile(rs_in_adr) := rs_in_data;
+  io.rs1_out_data := regFile(io.rs1_out_addr)
+  io.rs2_out_data := regFile(io.rs2_out_addr)
+
+  when (io.wen === UInt(1)){
+	regFile(io.rs_in_adr) := io.rs_in_data;
 	}
 
 }

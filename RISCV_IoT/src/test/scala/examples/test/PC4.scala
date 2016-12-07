@@ -2,8 +2,8 @@ package core
 
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
-class PC4Tests(c: PC4) extends Tester(c) {
-  for (t <- 0 until 4) {
+class PC4Tests(c: PC4) extends PeekPokeTester(c) {
+  for (t <- 0 until 1) {
      val test_in = rnd.nextInt(32)
     poke(c.io.PC4_in,     test_in)
     step(1)

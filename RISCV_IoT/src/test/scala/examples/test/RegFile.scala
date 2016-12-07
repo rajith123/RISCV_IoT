@@ -1,3 +1,5 @@
+package core
+
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class RegFileTests(c: RegFile) extends Tester(c) {

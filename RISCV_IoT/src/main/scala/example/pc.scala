@@ -1,3 +1,4 @@
+package core{
 import chisel3._
 
 class pc extends Module {
@@ -6,4 +7,5 @@ class pc extends Module {
     val pc_out = Output(UInt(width=32))
   })
   io.pc_out := Reg(next = io.pc_in)
+}
 }

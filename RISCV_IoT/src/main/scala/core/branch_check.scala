@@ -15,7 +15,7 @@ class branch_check extends Module {
 	io.br_eq := UInt(1,1)
 	io.br_lt := UInt(0,1)
 	io.br_ltu:= UInt(0,1)
-  }.elsewhen(io.rs1 < io.rs2){
+  }.elsewhen(io.rs1.toSInt < io.rs2.toSInt){
 	io.br_eq := UInt(0,1)
 	io.br_lt := UInt(1,1)
 	io.br_ltu:= UInt(0,1)	

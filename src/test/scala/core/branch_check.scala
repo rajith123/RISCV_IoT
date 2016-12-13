@@ -1,6 +1,7 @@
 package core
 import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 import chisel3._
+import chisel3.core.Bool
 
 class branch_checkTests(c: branch_check) extends PeekPokeTester(c) {
   for (s0 <- 0 until 2) {
@@ -12,9 +13,10 @@ class branch_checkTests(c: branch_check) extends PeekPokeTester(c) {
               step(1)
 	      val i0_u = UInt(i0)
 	      val i1_u = UInt(i1)
-	      val eq = if(i0 == i1) 1 else 0
-	      val ltu = if(i0_u < i1_u) 1 else 0
-	      val lt = if(i0 < i1) 1 else 0	
+	      val eq = i0 == i1
+	      val ltu = i0_u < i1_u
+	      val lt = i0 < i1
+
               expect(c.io.br_eq, eq)
               expect(c.io.br_lt, lt)
               expect(c.io.br_ltu, ltu)

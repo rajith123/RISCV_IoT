@@ -1,11 +1,12 @@
 package core
 
 import chisel3._
+import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class ByPassBridgeTests(c: ByPassBridge) extends PeekPokeTester(c) {
-  
-	
-	printf("%b",BEQ)
+    step(1)
+    expect(UInt(0,1),UInt(0,1))
+
 }
 
 class ByPassBridgeTester extends ChiselFlatSpec {

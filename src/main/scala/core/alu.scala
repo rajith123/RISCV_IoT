@@ -28,11 +28,11 @@ import ALU._
 
 class ALUIO (implicit conf: SodorConfiguration) extends Bundle {	//constructor for IO interface
   //val xprlen = 32
-  val fn = Bits(INPUT, SZ_ALU_FN)
-  val in2 = UInt(INPUT, conf.xprlen)
-  val in1 = UInt(INPUT, conf.xprlen)
-  val out = UInt(OUTPUT, conf.xprlen)
-  val adder_out = UInt(OUTPUT, conf.xprlen)
+  val fn        = Input(Bits(width = SZ_ALU_FN))
+  val in2       = Input(UInt(width = conf.xprlen))
+  val in1       = Input(UInt(width = conf.xprlen))
+  val out       = Output(UInt(width = conf.xprlen))
+  val adder_out = Output(UInt(width = conf.xprlen))
 }
 
 class ALU (implicit conf: SodorConfiguration) extends Module

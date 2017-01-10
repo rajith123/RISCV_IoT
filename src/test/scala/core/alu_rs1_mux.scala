@@ -3,23 +3,14 @@ import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 
 class alu_rs1_muxTests(c: alu_rs1_mux) extends PeekPokeTester(c) {
   for (s0 <- 0 until 2) {
-    for (s1 <- 0 until 2) {
 	      val i0 = rnd.nextInt(32)
 	      val i1 = rnd.nextInt(32)
-	      val i2 = rnd.nextInt(32)
-	      val i3 = rnd.nextInt(32)
-              poke(c.io.rs1_mux_sel, s1 << 1 | s0)
+              poke(c.io.rs1_mux_sel,s0)
               poke(c.io.rs1, i0)
               poke(c.io.imm_u, i1)
-              poke(c.io.imm_z, i2)
               step(1)
-              val out = if(s1 == 1) {
-                          if (s0 == 1) i0 else i2
-                        } else {
-                          if (s0 == 1) i1 else i0 
-                        }
+              val out = if (s0 == 0) i0 else i1
               expect(c.io.to_alu_a, out)
-    }
   }
 }
 

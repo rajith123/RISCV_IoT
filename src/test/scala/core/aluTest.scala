@@ -1,11 +1,10 @@
-package RiscvIoT
+package core
 
 import Common._
 //import chisel3._
 import chisel3.util._
 import chisel3.iotesters._
 import org.scalatest.{Matchers, FlatSpec}
-//import RiscvIoT.ALU
 
 class ALUUnitTester(c: ALU) extends PeekPokeTester(c) {
 

@@ -6,7 +6,7 @@ class alu_rs1_mux extends Module {
   val io = IO(new Bundle {
     val rs1		= Input(UInt(width = 32))
     val imm_u 		= Input(UInt(width = 32))
-    val rs1_mux_sel 	= Input(UInt(width = 2))
+    val rs1_mux_sel 	= Input(UInt(width = 1))
     val to_alu_a 	= Output(UInt(width = 32))
   })
   val R1   	= UInt(0, 1) 

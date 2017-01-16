@@ -3,7 +3,7 @@ circuit alu_rs1_mux :
   module alu_rs1_mux : 
     input clock : Clock
     input reset : UInt<1>
-    output io : {flip rs1 : UInt<32>, flip imm_u : UInt<32>, flip rs1_mux_sel : UInt<2>, to_alu_a : UInt<32>}
+    output io : {flip rs1 : UInt<32>, flip imm_u : UInt<32>, flip rs1_mux_sel : UInt<1>, to_alu_a : UInt<32>}
     
     io is invalid
     io is invalid

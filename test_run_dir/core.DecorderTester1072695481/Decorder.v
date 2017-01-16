@@ -108,9 +108,9 @@ module Decorder(
   assign pc4 = _T_32 | _T_35;
   assign _T_196 = io_DataMem_rdy == 1'h0;
   assign _T_197 = pc4 & _T_196;
-  assign _GEN_14 = _T_197 ? 2'h0 : 2'h2;
+  assign _GEN_14 = _T_197 ? 2'h1 : 2'h2;
   assign _T_201 = pc4 & io_DataMem_rdy;
-  assign _GEN_15 = _T_201 ? 2'h1 : _GEN_14;
+  assign _GEN_15 = _T_201 ? 2'h0 : _GEN_14;
   assign _T_211 = _T_35 | _T_66;
   assign _T_214 = _T_33 & _T_39;
   assign _T_215 = _T_211 | _T_214;

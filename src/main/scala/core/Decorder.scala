@@ -100,10 +100,10 @@ class Decorder extends Module{
        io.PC_MUX_sel := UInt(2,2)
     }
     when(pc4 && (io.DataMem_rdy === UInt(0,1))) {
-        io.PC_MUX_sel := UInt(0,2) //STALL
+        io.PC_MUX_sel := UInt(1,2) //STALL
     }
     when(pc4 && io.DataMem_rdy === UInt(1,1)) {
-        io.PC_MUX_sel := UInt(1,2) //PC+4
+        io.PC_MUX_sel := UInt(0,2) //PC+4
     }
 
 

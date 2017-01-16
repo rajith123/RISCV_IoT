@@ -1,9 +1,16 @@
 package core
-
+import chisel3.iotesters.{PeekPokeTester, Driver, ChiselFlatSpec}
 import chisel3._
 
 class ByPassBridgeTests(c: ByPassBridge) extends PeekPokeTester(c) {
   
+   val test = UInt(1,1)
+   val test2 = UInt(1,1)
+   val IRTest = rnd.nextInt(32)
+   poke(c.io.IR,IRTest)
+   step(1)
+   
+   expect(test, test2)
   
 }
 

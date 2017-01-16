@@ -1,0 +1,56 @@
+;buildInfoPackage: chisel3, version: 3.0-SNAPSHOT, scalaVersion: 2.11.7, sbtVersion: 0.13.11, builtAtString: 2016-12-12 22:28:40.596, builtAtMillis: 1481581720596
+circuit ByPassBridge : 
+  module ByPassBridge : 
+    input clock : Clock
+    input reset : UInt<1>
+    output io : {flip IR : UInt<32>, rs1_bypass_mux_sel : UInt<1>, rs2_bypass_mux_sel : UInt<1>}
+    
+    io is invalid
+    io is invalid
+    reg IR_old : UInt, clock @[ByPassBridge.scala 13:25]
+    IR_old <= io.IR @[ByPassBridge.scala 13:25]
+    node _T_8 = bits(IR_old, 6, 2) @[ByPassBridge.scala 15:22]
+    node _T_10 = eq(_T_8, UInt<5>("h08")) @[ByPassBridge.scala 15:28]
+    node _T_11 = bits(IR_old, 6, 2) @[ByPassBridge.scala 15:53]
+    node _T_13 = eq(_T_11, UInt<5>("h018")) @[ByPassBridge.scala 15:59]
+    node _T_14 = or(_T_10, _T_13) @[ByPassBridge.scala 15:43]
+    when _T_14 : @[ByPassBridge.scala 15:75]
+      skip @[ByPassBridge.scala 15:75]
+    node _T_16 = eq(_T_14, UInt<1>("h00")) @[ByPassBridge.scala 15:75]
+    when _T_16 : @[ByPassBridge.scala 17:22]
+      node _T_17 = bits(io.IR, 6, 2) @[ByPassBridge.scala 19:29]
+      node _T_19 = eq(_T_17, UInt<5>("h019")) @[ByPassBridge.scala 19:35]
+      node _T_20 = bits(io.IR, 2, 2) @[ByPassBridge.scala 19:60]
+      node _T_22 = eq(_T_20, UInt<1>("h00")) @[ByPassBridge.scala 19:66]
+      node _T_23 = or(_T_19, _T_22) @[ByPassBridge.scala 19:51]
+      when _T_23 : @[ByPassBridge.scala 19:82]
+        node _T_24 = bits(IR_old, 11, 7) @[ByPassBridge.scala 20:37]
+        node _T_25 = bits(io.IR, 19, 15) @[ByPassBridge.scala 20:53]
+        node _T_26 = eq(_T_24, _T_25) @[ByPassBridge.scala 20:44]
+        when _T_26 : @[ByPassBridge.scala 20:61]
+          io.rs1_bypass_mux_sel <= UInt<1>("h01") @[ByPassBridge.scala 21:55]
+          skip @[ByPassBridge.scala 20:61]
+        node _T_29 = eq(_T_26, UInt<1>("h00")) @[ByPassBridge.scala 20:61]
+        when _T_29 : @[ByPassBridge.scala 22:37]
+          io.rs1_bypass_mux_sel <= UInt<1>("h00") @[ByPassBridge.scala 23:55]
+          skip @[ByPassBridge.scala 22:37]
+        skip @[ByPassBridge.scala 19:82]
+      node _T_31 = bits(io.IR, 6, 2) @[ByPassBridge.scala 27:29]
+      node _T_33 = eq(_T_31, UInt<5>("h018")) @[ByPassBridge.scala 27:35]
+      node _T_34 = bits(io.IR, 6, 5) @[ByPassBridge.scala 27:61]
+      node _T_36 = eq(_T_34, UInt<2>("h01")) @[ByPassBridge.scala 27:67]
+      node _T_37 = or(_T_33, _T_36) @[ByPassBridge.scala 27:52]
+      when _T_37 : @[ByPassBridge.scala 27:83]
+        node _T_38 = bits(IR_old, 11, 7) @[ByPassBridge.scala 28:37]
+        node _T_39 = bits(io.IR, 24, 20) @[ByPassBridge.scala 28:53]
+        node _T_40 = eq(_T_38, _T_39) @[ByPassBridge.scala 28:44]
+        when _T_40 : @[ByPassBridge.scala 28:61]
+          io.rs2_bypass_mux_sel <= UInt<1>("h01") @[ByPassBridge.scala 29:55]
+          skip @[ByPassBridge.scala 28:61]
+        node _T_43 = eq(_T_40, UInt<1>("h00")) @[ByPassBridge.scala 28:61]
+        when _T_43 : @[ByPassBridge.scala 30:37]
+          io.rs2_bypass_mux_sel <= UInt<1>("h00") @[ByPassBridge.scala 31:55]
+          skip @[ByPassBridge.scala 30:37]
+        skip @[ByPassBridge.scala 27:83]
+      skip @[ByPassBridge.scala 17:22]
+    

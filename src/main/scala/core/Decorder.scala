@@ -4,17 +4,20 @@ import chisel3._
 
 class Decorder extends Module{
 	val io = IO(new Bundle {
-	val IR = Input(UInt(width=32))
+	    val IR = Input(UInt(width=32))
         val br_eq = Input(UInt(width = 1))
         val br_lt = Input(UInt(width = 1))
         val br_ltu = Input(UInt(width = 1))
         val DataMem_rdy = Input(UInt(width = 1))
-	val BUS_A_sel = Output(UInt(width = 1))
+	    val BUS_A_sel = Output(UInt(width = 1))
         val BUS_B_sel = Output(UInt(width = 2))
         val WB_sel = Output(UInt(width = 2))
         val BRJMP_sel = Output(UInt(width = 1))
         val JBType_sel = Output(UInt(width = 1))
         val PC_MUX_sel = Output(UInt(width = 2))
+        val WEN_RegFile = Output(UInt(width = 1))
+        val Mem_rd = Output(UInt(width = 1))
+        val Mem_wr = Output(UInt(width = 1))
 	})
 	val rs2 = !io.IR(6) && io.IR(5) && io.IR(4)
     val i = (!io.IR(5) && !io.IR(2)) || (!io.IR(4) && !io.IR(3) && io.IR(2))
@@ -101,4 +104,11 @@ class Decorder extends Module{
     when(io.DataMem_rdy === UInt(1,1)) {
         io.PC_MUX_sel := UInt(1,2)
     }
+
+
+    io.WEN_RegFile := io.IR(4) || (!io.IR(5) && !io.IR(3)) || (io.IR(5) && io.IR(2))
+
+    io.Mem_rd := !io.IR(5) && !io.IR(4) && !io.IR(3)
+    io.Mem_wr := !io.IR(6) && io.IR(5) && !io.IR(4)
+    
 }

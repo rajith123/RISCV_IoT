@@ -3,7 +3,7 @@ circuit pc_mux :
   module pc_mux : 
     input clock : Clock
     input reset : UInt<1>
-    output io : {flip pc_4 : UInt<32>, flip pc : UInt<32>, flip jmp_br : UInt<32>, flip pc_sel : UInt<4>, to_pc : UInt<32>}
+    output io : {flip pc_4 : UInt<32>, flip pc : UInt<32>, flip jmp_br : UInt<32>, flip pc_sel : UInt<2>, to_pc : UInt<32>}
     
     io is invalid
     io is invalid

@@ -6,7 +6,7 @@ class jmp_br_mux extends Module {
   val io = IO(new Bundle {
     val jmp		= Input(UInt(width = 32))
     val br 		= Input(UInt(width = 32))
-    val jmp_br_mux_sel 	= Input(UInt(width = 2))
+    val jmp_br_mux_sel 	= Input(UInt(width = 1))
     val to_adder 	= Output(UInt(width = 32))
   })
   val J   	= UInt(0, 1) 

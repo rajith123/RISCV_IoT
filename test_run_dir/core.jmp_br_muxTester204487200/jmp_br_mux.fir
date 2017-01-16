@@ -3,7 +3,7 @@ circuit jmp_br_mux :
   module jmp_br_mux : 
     input clock : Clock
     input reset : UInt<1>
-    output io : {flip jmp : UInt<32>, flip br : UInt<32>, flip jmp_br_mux_sel : UInt<2>, to_adder : UInt<32>}
+    output io : {flip jmp : UInt<32>, flip br : UInt<32>, flip jmp_br_mux_sel : UInt<1>, to_adder : UInt<32>}
     
     io is invalid
     io is invalid

@@ -21,7 +21,7 @@ class Decorder extends Module{
 	})
 	val rs2 = !io.IR(6) && io.IR(5) && io.IR(4)
     val i = (!io.IR(5) && !io.IR(2)) || (!io.IR(4) && !io.IR(3) && io.IR(2))
-    val s = !io.IR(6) && io.IR(5) && io.IR(4)
+    val s = !io.IR(6) && io.IR(5) && !io.IR(4)
     val pcb = !io.IR(5) && !io.IR(3) && io.IR(2)
     
     val rs1 = (!io.IR(6) && !io.IR(2)) || (!io.IR(4) && !io.IR(3) && io.IR(2))

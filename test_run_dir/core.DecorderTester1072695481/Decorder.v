@@ -48,6 +48,7 @@ module Decorder(
   wire  _T_66;
   wire  pcb;
   wire  u;
+  wire  _T_95;
   wire  _T_102;
   wire  mem;
   wire  pcwb;
@@ -65,15 +66,21 @@ module Decorder(
   wire  _T_201;
   wire [1:0] _GEN_15;
   wire  _T_211;
-  wire  _T_214;
-  wire  _T_215;
+  wire  _T_218;
+  wire  _T_222;
+  wire  _T_226;
+  wire  _T_227;
+  wire  _T_230;
+  wire  _T_234;
+  wire  _T_238;
+  wire  _T_239;
   assign io_BUS_A_sel = u;
   assign io_BUS_B_sel = _GEN_3;
   assign io_WB_sel = _GEN_8;
   assign io_BRJMP_sel = _T_51;
   assign io_JBType_sel = _T_119;
   assign io_PC_MUX_sel = _GEN_15;
-  assign io_WEN_RegFile = _T_215;
+  assign io_WEN_RegFile = _T_239;
   assign io_Mem_rd = mem;
   assign io_Mem_wr = s;
   assign _T_30 = io_IR[6];
@@ -95,6 +102,7 @@ module Decorder(
   assign _T_66 = _T_38 & _T_48;
   assign pcb = _T_66 & _T_39;
   assign u = _T_35 & _T_39;
+  assign _T_95 = _T_32 & _T_35;
   assign _T_102 = _T_38 & _T_45;
   assign mem = _T_102 & _T_48;
   assign pcwb = _T_33 & _T_46;
@@ -111,7 +119,13 @@ module Decorder(
   assign _GEN_14 = _T_197 ? 2'h1 : 2'h2;
   assign _T_201 = pc4 & io_DataMem_rdy;
   assign _GEN_15 = _T_201 ? 2'h0 : _GEN_14;
-  assign _T_211 = _T_35 | _T_66;
-  assign _T_214 = _T_33 & _T_39;
-  assign _T_215 = _T_211 | _T_214;
+  assign _T_211 = _T_95 & _T_48;
+  assign _T_218 = _T_32 & _T_38;
+  assign _T_222 = _T_218 & _T_48;
+  assign _T_226 = _T_222 & _T_41;
+  assign _T_227 = _T_211 | _T_226;
+  assign _T_230 = _T_30 & _T_33;
+  assign _T_234 = _T_230 & _T_45;
+  assign _T_238 = _T_234 & _T_41;
+  assign _T_239 = _T_227 | _T_238;
 endmodule

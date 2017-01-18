@@ -70,6 +70,7 @@ module RegFile(
   reg [31:0] _GEN_79;
   reg [31:0] regFile_15;
   reg [31:0] _GEN_80;
+  wire  _T_73;
   wire [31:0] _GEN_0;
   wire [31:0] _GEN_3;
   wire [31:0] _GEN_4;
@@ -86,6 +87,8 @@ module RegFile(
   wire [31:0] _GEN_15;
   wire [31:0] _GEN_16;
   wire [31:0] _GEN_17;
+  wire [31:0] _T_76;
+  wire  _T_78;
   wire [31:0] _GEN_1;
   wire [31:0] _GEN_18;
   wire [31:0] _GEN_19;
@@ -102,6 +105,7 @@ module RegFile(
   wire [31:0] _GEN_30;
   wire [31:0] _GEN_31;
   wire [31:0] _GEN_32;
+  wire [31:0] _T_81;
   wire [31:0] _GEN_2;
   wire [31:0] _GEN_33;
   wire [31:0] _GEN_34;
@@ -135,8 +139,8 @@ module RegFile(
   wire [31:0] _GEN_62;
   wire [31:0] _GEN_63;
   wire [31:0] _GEN_64;
-  assign io_rs1_out_data = _GEN_0;
-  assign io_rs2_out_data = _GEN_1;
+  assign io_rs1_out_data = _T_76;
+  assign io_rs2_out_data = _T_81;
   assign _T_35_0 = 32'h0;
   assign _T_35_1 = 32'h0;
   assign _T_35_2 = 32'h0;
@@ -153,6 +157,7 @@ module RegFile(
   assign _T_35_13 = 32'h0;
   assign _T_35_14 = 32'h0;
   assign _T_35_15 = 32'h0;
+  assign _T_73 = io_rs1_out_addr == 4'h0;
   assign _GEN_0 = _GEN_17;
   assign _GEN_3 = 4'h1 == io_rs1_out_addr ? regFile_1 : regFile_0;
   assign _GEN_4 = 4'h2 == io_rs1_out_addr ? regFile_2 : _GEN_3;
@@ -169,6 +174,8 @@ module RegFile(
   assign _GEN_15 = 4'hd == io_rs1_out_addr ? regFile_13 : _GEN_14;
   assign _GEN_16 = 4'he == io_rs1_out_addr ? regFile_14 : _GEN_15;
   assign _GEN_17 = 4'hf == io_rs1_out_addr ? regFile_15 : _GEN_16;
+  assign _T_76 = _T_73 ? 32'h0 : _GEN_0;
+  assign _T_78 = io_rs2_out_addr == 4'h0;
   assign _GEN_1 = _GEN_32;
   assign _GEN_18 = 4'h1 == io_rs2_out_addr ? regFile_1 : regFile_0;
   assign _GEN_19 = 4'h2 == io_rs2_out_addr ? regFile_2 : _GEN_18;
@@ -185,6 +192,7 @@ module RegFile(
   assign _GEN_30 = 4'hd == io_rs2_out_addr ? regFile_13 : _GEN_29;
   assign _GEN_31 = 4'he == io_rs2_out_addr ? regFile_14 : _GEN_30;
   assign _GEN_32 = 4'hf == io_rs2_out_addr ? regFile_15 : _GEN_31;
+  assign _T_81 = _T_78 ? 32'h0 : _GEN_1;
   assign _GEN_2 = io_rs_in_data;
   assign _GEN_33 = 4'h0 == io_rs_in_adr ? _GEN_2 : regFile_0;
   assign _GEN_34 = 4'h1 == io_rs_in_adr ? _GEN_2 : regFile_1;

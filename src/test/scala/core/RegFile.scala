@@ -30,9 +30,12 @@ class RegFileTests(c: RegFile) extends PeekPokeTester(c) {
 	poke(c.io.rs2_out_addr,test_addr_rs2)
 	
 	step(1)
-    	
-    	expect(c.io.rs1_out_data, test_data(test_addr_rs1))
-	expect(c.io.rs2_out_data, test_data(test_addr_rs2))
+    
+    val test_data_out1 = if (test_addr_rs1 == 0) 0 else test_data(test_addr_rs1)
+    val test_data_out2 = if (test_addr_rs2 == 0) 0 else test_data(test_addr_rs2)	
+    
+    expect(c.io.rs1_out_data, test_data_out1)
+	expect(c.io.rs2_out_data, test_data_out2)
   }
 }
 

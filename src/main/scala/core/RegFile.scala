@@ -19,8 +19,9 @@ class RegFile extends Module {
   val initValue = Seq.fill(16) { UInt(0,32)}
   val regFile = Reg(init = Vec(initValue))
   
-  io.rs1_out_data := regFile(io.rs1_out_addr)
-  io.rs2_out_data := regFile(io.rs2_out_addr)
+  io.rs1_out_data := Mux( io.rs1_out_addr === UInt(0,4) , UInt(0,32) , regFile(io.rs1_out_addr) )
+  io.rs2_out_data := Mux( io.rs2_out_addr === UInt(0,4) , UInt(0,32) , regFile(io.rs2_out_addr) )
+
 
   when (io.wen === UInt(1,1)){
 	regFile(io.rs_in_adr) := io.rs_in_data;

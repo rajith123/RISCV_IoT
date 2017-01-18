@@ -114,12 +114,17 @@ class Decorder extends Module{
     io.Mem_rd := !io.IR(5) && !io.IR(4) && !io.IR(3)
     io.Mem_wr := !io.IR(6) && io.IR(5) && !io.IR(4)
 
-    val ALU_func3_bit  = (!io.IR(6) && io.IR(5) && io.IR(4) && !io.IR(2) && !io.IR(14) && io.IR(13)) || io.IR(30)
+    val ALU_func4_bit  = (!io.IR(6) && io.IR(5) && io.IR(4) && !io.IR(2) && !io.IR(14) && io.IR(13)) || io.IR(30)
 
-    when (ALU_func3_bit) {
-        io.ALU_func := Cat(UInt(1,1),io.IR(14,12))
+
+    when (!io.IR(6) && io.IR(4) && !io.IR(2)){
+        when (ALU_func4_bit) {
+            io.ALU_func := Cat(UInt(1,1),io.IR(14,12))
+        }.otherwise {
+            io.ALU_func := Cat(UInt(0,1),io.IR(14,12))
+        }
     }.otherwise {
-        io.ALU_func := Cat(UInt(0,1),io.IR(14,12))
+        io.ALU_func := UInt(0,4)
     }
     
 }

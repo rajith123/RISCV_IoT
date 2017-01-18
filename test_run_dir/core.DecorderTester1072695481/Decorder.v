@@ -84,11 +84,14 @@ module Decorder(
   wire  _T_277;
   wire  _T_278;
   wire  _T_279;
-  wire  ALU_func3_bit;
-  wire [3:0] _T_282;
-  wire  _T_284;
-  wire [3:0] _T_287;
+  wire  ALU_func4_bit;
+  wire  _T_288;
+  wire [3:0] _T_291;
+  wire  _T_293;
+  wire [3:0] _T_296;
   wire [3:0] _GEN_17;
+  wire  _T_298;
+  wire [3:0] _GEN_19;
   assign io_BUS_A_sel = u;
   assign io_BUS_B_sel = _GEN_3;
   assign io_WB_sel = _GEN_8;
@@ -98,7 +101,7 @@ module Decorder(
   assign io_WEN_RegFile = _T_241;
   assign io_Mem_rd = mem;
   assign io_Mem_wr = s;
-  assign io_ALU_func = _GEN_17;
+  assign io_ALU_func = _GEN_19;
   assign _T_32 = io_IR[6];
   assign _T_34 = _T_32 == 1'h0;
   assign _T_35 = io_IR[5];
@@ -153,9 +156,12 @@ module Decorder(
   assign _T_277 = io_IR[13];
   assign _T_278 = _T_276 & _T_277;
   assign _T_279 = io_IR[30];
-  assign ALU_func3_bit = _T_278 | _T_279;
-  assign _T_282 = {1'h1,func3};
-  assign _T_284 = ALU_func3_bit == 1'h0;
-  assign _T_287 = {1'h0,func3};
-  assign _GEN_17 = _T_284 ? _T_287 : _T_282;
+  assign ALU_func4_bit = _T_278 | _T_279;
+  assign _T_288 = _T_97 & _T_43;
+  assign _T_291 = {1'h1,func3};
+  assign _T_293 = ALU_func4_bit == 1'h0;
+  assign _T_296 = {1'h0,func3};
+  assign _GEN_17 = _T_293 ? _T_296 : _T_291;
+  assign _T_298 = _T_288 == 1'h0;
+  assign _GEN_19 = _T_298 ? 4'h0 : _GEN_17;
 endmodule

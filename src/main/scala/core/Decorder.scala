@@ -1,6 +1,7 @@
 package core
 
 import chisel3._
+import chisel3.util._
 
 class Decorder extends Module{
 	val io = IO(new Bundle {
@@ -18,6 +19,7 @@ class Decorder extends Module{
         val WEN_RegFile = Output(UInt(width = 1))
         val Mem_rd = Output(UInt(width = 1))
         val Mem_wr = Output(UInt(width = 1))
+        val ALU_func = Output(UInt(width = 4))
 	})
 	val rs2 = !io.IR(6) && io.IR(5) && io.IR(4)
     val i = (!io.IR(5) && !io.IR(2)) || (!io.IR(4) && !io.IR(3) && io.IR(2))
@@ -111,5 +113,13 @@ class Decorder extends Module{
 
     io.Mem_rd := !io.IR(5) && !io.IR(4) && !io.IR(3)
     io.Mem_wr := !io.IR(6) && io.IR(5) && !io.IR(4)
+
+    val ALU_func3_bit  = (!io.IR(6) && io.IR(5) && io.IR(4) && !io.IR(2) && !io.IR(14) && io.IR(13)) || io.IR(30)
+
+    when (ALU_func3_bit) {
+        io.ALU_func := Cat(UInt(1,1),io.IR(14,12))
+    }.otherwise {
+        io.ALU_func := Cat(UInt(0,1),io.IR(14,12))
+    }
     
 }

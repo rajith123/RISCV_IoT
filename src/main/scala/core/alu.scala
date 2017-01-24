@@ -11,14 +11,15 @@ object ALU
   val ALU_ADD  = Bits(0)
   val ALU_SLL  = Bits(1)
   val ALU_XOR  = Bits(4)
+  val ALU_SRL  = Bits(5)
   val ALU_OR   = Bits(6)
   val ALU_AND  = Bits(7)
-  val ALU_SRL  = Bits(5)
+
   val ALU_SUB  = Bits(8)
-  val ALU_SRA  = Bits(11)
-  val ALU_SLT  = Bits(12)
-  val ALU_SLTU = Bits(14)
-  val ALU_COPY1= Bits(10)   
+  val ALU_SLT  = Bits(10)
+  val ALU_SLTU = Bits(11)
+  val ALU_SRA  = Bits(13)
+  val ALU_COPY1= Bits(15)   
 
   //def isMulFN(fn: Bits, cmp: Bits) = fn(1,0) === cmp(1,0)
   def isSub(cmd: Bits) = cmd(3)		//checks for SUB, shift left & set less than
@@ -26,7 +27,7 @@ object ALU
 }
 import ALU._
 
-class ALUIO (implicit conf: SodorConfiguration) extends Bundle {	//constructor for IO interface
+class ALUIO (implicit conf: Configuration) extends Bundle {	//constructor for IO interface
   //val xprlen = 32
   val fn        = Input(Bits(width = SZ_ALU_FN))
   val in2       = Input(UInt(width = conf.xprlen))
@@ -35,7 +36,7 @@ class ALUIO (implicit conf: SodorConfiguration) extends Bundle {	//constructor f
   val adder_out = Output(UInt(width = conf.xprlen))
 }
 
-class ALU (implicit conf: SodorConfiguration) extends Module
+class ALU (implicit conf: Configuration) extends Module
 {
   val io = IO(new ALUIO)
   //val xprlen = 32

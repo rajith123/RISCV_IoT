@@ -1,4 +1,4 @@
-package RiscvIoT
+package core
 
 import Common._
 //import chisel3._
@@ -46,7 +46,7 @@ class ALUUnitTester(c: ALU) extends PeekPokeTester(c) {
 class ALUTester extends ChiselFlatSpec {
   val backendNames = Array[String]("firrtl", "verilator")
   for ( backendName <- backendNames ) {
-    implicit val conf = new SodorConfiguration
+    implicit val conf = new Configuration
     "ALU" should s"carry out proper arithmatic and logical operations (with ${backendName})" in {
       Driver(() => new ALU, backendName) {
         c => new ALUUnitTester(c)

@@ -1,0 +1,69 @@
+ISim log file
+Running: D:\RISC\tb_core_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb D:/RISC/tb_core_isim_beh.wdb 
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+WARNING: File "D:/RISC/core.v" Line 233.  For instance uut/cpath_decode/, width 2 of formal port io_WB_sel is not equal to width 1 of actual signal wb_sel.
+WARNING: File "D:/RISC/core.v" Line 107.  For instance uut/reg_stack/, width 4 of formal port io_rs_in_adr is not equal to width 5 of actual variable wb_addr_reg. 
+WARNING: File "D:/RISC/core.v" Line 42.  For instance uut/reg_stack/, width 4 of formal port io_rs1_out_addr is not equal to width 5 of actual signal rs1_addr.
+WARNING: File "D:/RISC/core.v" Line 43.  For instance uut/reg_stack/, width 4 of formal port io_rs2_out_addr is not equal to width 5 of actual signal rs2_addr.
+WARNING: File "D:/RISC/core.v" Line 71.  For instance uut/rs1_mux/, width 2 of formal port io_rs1_mux_sel is not equal to width 1 of actual signal BUS_A_sel.
+WARNING: File "D:/RISC/core.v" Line 86.  For instance uut/jb_mux/, width 2 of formal port io_jmp_br_mux_sel is not equal to width 1 of actual signal JBType_sel.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# restart
+# run 1.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# restart
+# run 1.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# restart
+# run 1.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+WARNING: File "D:/RISC/core.v" Line 233.  For instance uut/cpath_decode/, width 2 of formal port io_WB_sel is not equal to width 1 of actual signal wb_sel.
+WARNING: File "D:/RISC/core.v" Line 107.  For instance uut/reg_stack/, width 4 of formal port io_rs_in_adr is not equal to width 5 of actual variable wb_addr_reg. 
+WARNING: File "D:/RISC/core.v" Line 42.  For instance uut/reg_stack/, width 4 of formal port io_rs1_out_addr is not equal to width 5 of actual signal rs1_addr.
+WARNING: File "D:/RISC/core.v" Line 43.  For instance uut/reg_stack/, width 4 of formal port io_rs2_out_addr is not equal to width 5 of actual signal rs2_addr.
+WARNING: File "D:/RISC/core.v" Line 86.  For instance uut/jb_mux/, width 2 of formal port io_jmp_br_mux_sel is not equal to width 1 of actual signal JBType_sel.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+ISim P.20131013 (signature 0x7708f090)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+WARNING: File "D:/RISC/core.v" Line 233.  For instance uut/cpath_decode/, width 2 of formal port io_WB_sel is not equal to width 1 of actual signal wb_sel.
+WARNING: File "D:/RISC/core.v" Line 107.  For instance uut/reg_stack/, width 4 of formal port io_rs_in_adr is not equal to width 5 of actual variable wb_addr_reg. 
+WARNING: File "D:/RISC/core.v" Line 42.  For instance uut/reg_stack/, width 4 of formal port io_rs1_out_addr is not equal to width 5 of actual signal rs1_addr.
+WARNING: File "D:/RISC/core.v" Line 43.  For instance uut/reg_stack/, width 4 of formal port io_rs2_out_addr is not equal to width 5 of actual signal rs2_addr.
+WARNING: File "D:/RISC/core.v" Line 86.  For instance uut/jb_mux/, width 2 of formal port io_jmp_br_mux_sel is not equal to width 1 of actual signal JBType_sel.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# restart
+# run 1.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# restart
+# run 1.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# restart
+# run 1.00us
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.

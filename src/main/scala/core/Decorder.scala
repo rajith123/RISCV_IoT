@@ -1,24 +1,29 @@
 package core
 
 import chisel3._
+import chisel3.util._
 
 class Decorder extends Module{
 	val io = IO(new Bundle {
-	val IR = Input(UInt(width=32))
+	    val IR = Input(UInt(width=32))
         val br_eq = Input(UInt(width = 1))
         val br_lt = Input(UInt(width = 1))
         val br_ltu = Input(UInt(width = 1))
         val DataMem_rdy = Input(UInt(width = 1))
-	val BUS_A_sel = Output(UInt(width = 1))
+	    val BUS_A_sel = Output(UInt(width = 1))
         val BUS_B_sel = Output(UInt(width = 2))
         val WB_sel = Output(UInt(width = 2))
         val BRJMP_sel = Output(UInt(width = 1))
         val JBType_sel = Output(UInt(width = 1))
         val PC_MUX_sel = Output(UInt(width = 2))
+        val WEN_RegFile = Output(UInt(width = 1))
+        val Mem_rd = Output(UInt(width = 1))
+        val Mem_wr = Output(UInt(width = 1))
+        val ALU_func = Output(UInt(width = 4))
 	})
 	val rs2 = !io.IR(6) && io.IR(5) && io.IR(4)
     val i = (!io.IR(5) && !io.IR(2)) || (!io.IR(4) && !io.IR(3) && io.IR(2))
-    val s = !io.IR(6) && io.IR(5) && io.IR(4)
+    val s = !io.IR(6) && io.IR(5) && !io.IR(4)
     val pcb = !io.IR(5) && !io.IR(3) && io.IR(2)
     
     val rs1 = (!io.IR(6) && !io.IR(2)) || (!io.IR(4) && !io.IR(3) && io.IR(2))
@@ -92,13 +97,34 @@ class Decorder extends Module{
     val jmp_jalr = io.IR(6) && io.IR(2)
     val br = io.IR(6) && !io.IR(4) && !io.IR(2)
     val pc4 = !io.IR(6) || io.IR(4)
-    when((jmp_jalr || br) && (io.DataMem_rdy === UInt(0,1))) {
+
+    when((jmp_jalr || br)) {
        io.PC_MUX_sel := UInt(2,2)
     }
     when(pc4 && (io.DataMem_rdy === UInt(0,1))) {
-        io.PC_MUX_sel := UInt(0,2)
+        io.PC_MUX_sel := UInt(1,2) //STALL
     }
-    when(io.DataMem_rdy === UInt(1,1)) {
-        io.PC_MUX_sel := UInt(1,2)
+    when(pc4 && io.DataMem_rdy === UInt(1,1)) {
+        io.PC_MUX_sel := UInt(0,2) //PC+4
     }
+
+
+    io.WEN_RegFile := (!io.IR(6) && io.IR(4) && !io.IR(3)) || (!io.IR(6) && !io.IR(5) && !io.IR(3) && !io.IR(2)) || (io.IR(6) && io.IR(5) && !io.IR(4) && !io.IR(2))
+
+    io.Mem_rd := !io.IR(5) && !io.IR(4) && !io.IR(3)
+    io.Mem_wr := !io.IR(6) && io.IR(5) && !io.IR(4)
+
+    val ALU_func4_bit  = (!io.IR(6) && io.IR(5) && io.IR(4) && !io.IR(2) && !io.IR(14) && io.IR(13)) || io.IR(30)
+
+
+    when (!io.IR(6) && io.IR(4) && !io.IR(2)){
+        when (ALU_func4_bit) {
+            io.ALU_func := Cat(UInt(1,1),io.IR(14,12))
+        }.otherwise {
+            io.ALU_func := Cat(UInt(0,1),io.IR(14,12))
+        }
+    }.otherwise {
+        io.ALU_func := UInt(0,4)
+    }
+    
 }

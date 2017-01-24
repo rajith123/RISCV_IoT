@@ -1,0 +1,52 @@
+Running: fuse.exe -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "D:/RISC/tb_core_isim_beh.exe" -prj "D:/RISC/tb_core_beh.prj" "work.tb_core" "work.glbl" 
+ISim P.20131013 (signature 0x7708f090)
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
+Determining compilation order of HDL files
+Analyzing Verilog file "D:/RISC/rs_bypass_mux.v" into library work
+Analyzing Verilog file "D:/RISC/reg_write_mux.v" into library work
+Analyzing Verilog file "D:/RISC/RegFile.v" into library work
+Analyzing Verilog file "D:/RISC/pc_mux.v" into library work
+Analyzing Verilog file "D:/RISC/pc.v" into library work
+Analyzing Verilog file "D:/RISC/jmp_br_mux.v" into library work
+Analyzing Verilog file "D:/RISC/jmp_br_jalr_mux.v" into library work
+Analyzing Verilog file "D:/RISC/IR.v" into library work
+Analyzing Verilog file "D:/RISC/imm_ext.v" into library work
+Analyzing Verilog file "D:/RISC/Decorder.v" into library work
+Analyzing Verilog file "D:/RISC/branch_check.v" into library work
+Analyzing Verilog file "D:/RISC/alu_rs2_mux.v" into library work
+Analyzing Verilog file "D:/RISC/alu_rs1_mux.v" into library work
+Analyzing Verilog file "D:/RISC/ALU.v" into library work
+Analyzing Verilog file "D:/RISC/core.v" into library work
+Analyzing Verilog file "D:/RISC/tb_core.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+WARNING:HDLCompiler:189 - "D:/RISC/core.v" Line 233: Size mismatch in connection of port <io_WB_sel>. Formal port size is 2-bit while actual signal size is 1-bit.
+WARNING:HDLCompiler:189 - "D:/RISC/core.v" Line 255: Size mismatch in connection of port <io_rs_in_adr>. Formal port size is 4-bit while actual signal size is 5-bit.
+WARNING:HDLCompiler:189 - "D:/RISC/core.v" Line 256: Size mismatch in connection of port <io_rs1_out_addr>. Formal port size is 4-bit while actual signal size is 5-bit.
+WARNING:HDLCompiler:189 - "D:/RISC/core.v" Line 257: Size mismatch in connection of port <io_rs2_out_addr>. Formal port size is 4-bit while actual signal size is 5-bit.
+WARNING:HDLCompiler:189 - "D:/RISC/core.v" Line 308: Size mismatch in connection of port <io_jmp_br_mux_sel>. Formal port size is 2-bit while actual signal size is 1-bit.
+Completed static elaboration
+Compiling module ALU
+Compiling module IR
+Compiling module imm_ext
+Compiling module rs_bypass_mux
+Compiling module Decorder
+Compiling module branch_check
+Compiling module RegFile
+Compiling module alu_rs1_mux
+Compiling module alu_rs2_mux
+Compiling module reg_write_mux
+Compiling module jmp_br_jalr_mux
+Compiling module jmp_br_mux
+Compiling module pc_mux
+Compiling module pc
+Compiling module core
+Compiling module tb_core
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 17 Verilog Units
+Built simulation executable D:/RISC/tb_core_isim_beh.exe
+Fuse Memory Usage: 29932 KB
+Fuse CPU Usage: 421 ms

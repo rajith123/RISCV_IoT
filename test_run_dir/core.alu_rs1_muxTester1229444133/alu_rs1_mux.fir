@@ -3,15 +3,13 @@ circuit alu_rs1_mux :
   module alu_rs1_mux : 
     input clock : Clock
     input reset : UInt<1>
-    output io : {flip rs1 : UInt<32>, flip imm_u : UInt<32>, flip imm_z : UInt<32>, flip rs1_mux_sel : UInt<2>, to_alu_a : UInt<32>}
+    output io : {flip rs1 : UInt<32>, flip imm_u : UInt<32>, flip rs1_mux_sel : UInt<1>, to_alu_a : UInt<32>}
     
     io is invalid
     io is invalid
-    node _T_12 = eq(io.rs1_mux_sel, UInt<2>("h00")) @[alu_rs1_mux.scala 18:57]
-    node _T_13 = eq(io.rs1_mux_sel, UInt<2>("h01")) @[alu_rs1_mux.scala 19:57]
-    node _T_14 = eq(io.rs1_mux_sel, UInt<2>("h02")) @[alu_rs1_mux.scala 20:57]
-    node _T_15 = mux(_T_14, io.imm_z, io.rs1) @[Mux.scala 61:16]
-    node _T_16 = mux(_T_13, io.imm_u, _T_15) @[Mux.scala 61:16]
-    node _T_17 = mux(_T_12, io.rs1, _T_16) @[Mux.scala 61:16]
-    io.to_alu_a <= _T_17 @[alu_rs1_mux.scala 17:15]
+    node _T_10 = eq(io.rs1_mux_sel, UInt<1>("h00")) @[alu_rs1_mux.scala 15:57]
+    node _T_11 = eq(io.rs1_mux_sel, UInt<1>("h01")) @[alu_rs1_mux.scala 16:57]
+    node _T_12 = mux(_T_11, io.imm_u, io.rs1) @[Mux.scala 61:16]
+    node _T_13 = mux(_T_10, io.rs1, _T_12) @[Mux.scala 61:16]
+    io.to_alu_a <= _T_13 @[alu_rs1_mux.scala 14:15]
     

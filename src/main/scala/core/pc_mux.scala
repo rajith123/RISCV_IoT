@@ -7,7 +7,7 @@ class pc_mux extends Module {
     val pc_4 	= Input(UInt(width = 32))
     val pc 	= Input(UInt(width = 32))
     val jmp_br 	= Input(UInt(width = 32))
-    val pc_sel 	= Input(UInt(width = 4))	
+    val pc_sel 	= Input(UInt(width = 2))	
     val to_pc 	= Output(UInt(width = 32))
   })
 

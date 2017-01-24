@@ -19,7 +19,7 @@ object ALU
   val ALU_SLT  = Bits(10)
   val ALU_SLTU = Bits(11)
   val ALU_SRA  = Bits(13)
-  val ALU_COPY1= Bits(15)   
+  val ALU_COPY1= Bits(15)
 
   //def isMulFN(fn: Bits, cmp: Bits) = fn(1,0) === cmp(1,0)
   def isSub(cmd: Bits) = cmd(3)		//checks for SUB, shift left & set less than

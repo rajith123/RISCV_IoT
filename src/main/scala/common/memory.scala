@@ -6,18 +6,18 @@ import Constants._
    
 trait MemOpConstants 
 {
-	val MT_X  = Bits(0, 3)	// memory transfer type
-	val MT_B  = Bits(1, 3)
-	val MT_H  = Bits(2, 3)
-	val MT_W  = Bits(3, 3)
-	val MT_D  = Bits(4, 3)
-	val MT_BU = Bits(5, 3)
-	val MT_HU = Bits(6, 3)
-	val MT_WU = Bits(7, 3)
+	val MT_X  = UInt(0, 3)	// memory transfer type
+	val MT_B  = UInt(1, 3)
+	val MT_H  = UInt(2, 3)
+	val MT_W  = UInt(3, 3)
+	val MT_D  = UInt(4, 3)
+	val MT_BU = UInt(5, 3)
+	val MT_HU = UInt(6, 3)
+	val MT_WU = UInt(7, 3)
 
-	val M_X   = Bits("b0", 1)	// access type
-	val M_RD  = Bits("b0", 1) 	// load
-	val M_WR  = Bits("b1", 1) 	// store
+	val M_X   = UInt("b0", 1)	// access type
+	val M_RD  = UInt("b0", 1) 	// load
+	val M_WR  = UInt("b1", 1) 	// store
 }
 
 class MemReq(data_width: Int)(implicit config: Configuration) extends Bundle
@@ -88,7 +88,7 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 			 read_data := chipMem.read(data_idx)
 			 //read_data := Vec(UInt(5), UInt(0), UInt(0), UInt(0))
 			 rdata     := LoadDataGen((read_data.asUInt >> bit_shift_amt), req_typ)
-			 rdata     := StoreMask(req_typ)
+			 //rdata     := StoreDataGen(req_data, req_typ).asUInt + UInt(5)
 		}
 		
 		io.port(i).resp.bits.data := rdata
@@ -122,8 +122,8 @@ object StoreDataGen
 
 		val dout 	=  	Wire(Vec(4, UInt(8.W)))
 		dout 		:=  	Mux(Bool(byte), Vec(din( 7,0), din( 7,0), din( 7,0), din( 7,0)),
-					Mux(Bool(half), Vec(din(15,8), din( 7,0), din(15,8), din( 7,0)),
-							Vec(din(31,24), din(23,16), din(15,8), din( 7,0))))
+					Mux(Bool(half), Vec(din( 7,0), din(15,8), din( 7,0), din(15,8)),
+							Vec(din( 7,0), din(15,8), din(23,16), din(31,24))))
 //		dout 		:=  	Mux(Bool(byte), Vec(Seq.fill(4)(din(7,0))),
 //					Mux(Bool(half), Vec(Seq(din(15,8), din( 7,0), din(15,8), din( 7,0))),
 //							Vec(Seq(din(31,24), din(23,16), din(15,8), din( 7,0)))))
@@ -143,29 +143,29 @@ object StoreDataGen
 
 object StoreMask
 {
-	def apply(sel: Bits): UInt = 
+	def apply(sel: UInt): UInt = 
 	{
 //		val mask 	= 	Mux(Bool(sel.equals(MT_H) || sel.equals(MT_HU)), Bits(0xffff, 32),
 //					Mux(Bool(sel.equals(MT_B) || sel.equals(MT_BU)), Bits(0xff, 32),
 //											 Bits(0xffffffffL, 32)))
-		val mask 	= 	Mux(Bool(sel.equals(MT_H) || sel.equals(MT_HU)), Bits("b0011", 4),
-					Mux(Bool(sel.equals(MT_B) || sel.equals(MT_BU)), Bits("b0001", 4),
-											 Bits("b1111", 4)))
-//		val mask 	= 	Mux(sel === MT_H || sel === MT_HU, Bits("b0011", 4),
-//					Mux(sel === MT_B || sel === MT_BU, Bits("b0001", 4),
-//							   		   Bits("b1111", 4)))
+//		val mask 	= 	Mux(Bool(sel.equals(MT_H) || sel.equals(MT_HU)), Bits("b0011", 4),
+//					Mux(Bool(sel.equals(MT_B) || sel.equals(MT_BU)), Bits("b0001", 4),
+//											 Bits("b1111", 4)))
+		val mask 	= 	Mux(sel === MT_H || sel === MT_HU, Bits("b0011", 4),
+					Mux(sel === MT_B || sel === MT_BU, Bits("b0001", 4),
+							   		   Bits("b1111", 4)))
 		return mask
 	}
 }
 
 object LoadDataGen
 {
-   	def apply(din: Bits, typ: Bits) : Bits =
+   	def apply(din: Bits, typ: UInt) : Bits =
    	{
-		val dout 	= 	Mux(Bool(typ.equals(MT_H)),  Cat(Fill(16, din(15)),   din(15,0)),
-					Mux(Bool(typ.equals(MT_HU)), Cat(Fill(16, UInt(0x0)), din(15,0)),
-					Mux(Bool(typ.equals(MT_B)),  Cat(Fill(24, din(7)),    din(7,0)),
-					Mux(Bool(typ.equals(MT_BU)), Cat(Fill(24, UInt(0x0)), din(7,0)), 
+		val dout 	= 	Mux(typ === MT_H,  Cat(Fill(16, din(15)),   din(15,0)),
+					Mux(typ === MT_HU, Cat(Fill(16, UInt(0x0)), din(15,0)),
+					Mux(typ === MT_B,  Cat(Fill(24, din(7)),    din(7,0)),
+					Mux(typ === MT_BU, Cat(Fill(24, UInt(0x0)), din(7,0)), 
 										    din(31,0)))))
       
       		return dout

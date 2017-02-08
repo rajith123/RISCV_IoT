@@ -238,10 +238,10 @@ void VALU::traceFullThis__1(VALU__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, 
 					   ^ vlTOPp->io_in2)
 				        : vlTOPp->io_in1)))),32);
 	vcdp->fullBus  (c+15,((((0U == (IData)(vlTOPp->io_fn)) 
-				| (0xaU == (IData)(vlTOPp->io_fn)))
+				| (8U == (IData)(vlTOPp->io_fn)))
 			        ? (IData)(vlTOPp->ALU__DOT___T_17)
-			        : (((0xcU == (IData)(vlTOPp->io_fn)) 
-				    | (0xeU == (IData)(vlTOPp->io_fn)))
+			        : (((0xaU == (IData)(vlTOPp->io_fn)) 
+				    | (0xbU == (IData)(vlTOPp->io_fn)))
 				    ? (1U & (((1U & 
 					       (vlTOPp->io_in1 
 						>> 0x1fU)) 

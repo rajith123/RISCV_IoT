@@ -81,7 +81,7 @@ VL_INLINE_OPT void VALU::_combo__TOP__1(VALU__Syms* __restrict vlSymsp) {
 								 & VL_NEGATE_Q((QData)((IData)(vlTOPp->io_in2)))))
 						      : vlTOPp->io_in2)))));
     vlTOPp->ALU__DOT___T_28 = ((5U == (IData)(vlTOPp->io_fn)) 
-			       | (0xbU == (IData)(vlTOPp->io_fn)));
+			       | (0xdU == (IData)(vlTOPp->io_fn)));
     vlTOPp->ALU__DOT___T_39 = ((0xffffU & (vlTOPp->io_in1 
 					   >> 0x10U)) 
 			       | (0xffff0000U & (vlTOPp->io_in1 
@@ -102,7 +102,7 @@ void VALU::_settle__TOP__2(VALU__Syms* __restrict vlSymsp) {
 								 & VL_NEGATE_Q((QData)((IData)(vlTOPp->io_in2)))))
 						      : vlTOPp->io_in2)))));
     vlTOPp->ALU__DOT___T_28 = ((5U == (IData)(vlTOPp->io_fn)) 
-			       | (0xbU == (IData)(vlTOPp->io_fn)));
+			       | (0xdU == (IData)(vlTOPp->io_fn)));
     vlTOPp->ALU__DOT___T_39 = ((0xffffU & (vlTOPp->io_in1 
 					   >> 0x10U)) 
 			       | (0xffff0000U & (vlTOPp->io_in1 
@@ -260,10 +260,10 @@ VL_INLINE_OPT void VALU::_combo__TOP__11(VALU__Syms* __restrict vlSymsp) {
 				| (0xccccccccU & (vlTOPp->ALU__DOT___T_116 
 						  << 2U)));
     vlTOPp->io_out = (((0U == (IData)(vlTOPp->io_fn)) 
-		       | (0xaU == (IData)(vlTOPp->io_fn)))
+		       | (8U == (IData)(vlTOPp->io_fn)))
 		       ? (IData)(vlTOPp->ALU__DOT___T_17)
-		       : (((0xcU == (IData)(vlTOPp->io_fn)) 
-			   | (0xeU == (IData)(vlTOPp->io_fn)))
+		       : (((0xaU == (IData)(vlTOPp->io_fn)) 
+			   | (0xbU == (IData)(vlTOPp->io_fn)))
 			   ? (1U & (((1U & (vlTOPp->io_in1 
 					    >> 0x1fU)) 
 				     == (1U & (vlTOPp->io_in2 
@@ -301,10 +301,10 @@ void VALU::_settle__TOP__12(VALU__Syms* __restrict vlSymsp) {
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
     vlTOPp->io_out = (((0U == (IData)(vlTOPp->io_fn)) 
-		       | (0xaU == (IData)(vlTOPp->io_fn)))
+		       | (8U == (IData)(vlTOPp->io_fn)))
 		       ? (IData)(vlTOPp->ALU__DOT___T_17)
-		       : (((0xcU == (IData)(vlTOPp->io_fn)) 
-			   | (0xeU == (IData)(vlTOPp->io_fn)))
+		       : (((0xaU == (IData)(vlTOPp->io_fn)) 
+			   | (0xbU == (IData)(vlTOPp->io_fn)))
 			   ? (1U & (((1U & (vlTOPp->io_in1 
 					    >> 0x1fU)) 
 				     == (1U & (vlTOPp->io_in2 

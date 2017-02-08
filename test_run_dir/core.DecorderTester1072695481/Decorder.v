@@ -27,7 +27,7 @@ module Decorder(
   output [1:0] io_PC_MUX_sel,
   output  io_WEN_RegFile,
   output  io_Mem_rd,
-  output  io_Mem_wr,
+  output  io_Mem_wr_valid,
   output [3:0] io_ALU_func
 );
   wire  _T_32;
@@ -100,7 +100,7 @@ module Decorder(
   assign io_PC_MUX_sel = _GEN_15;
   assign io_WEN_RegFile = _T_241;
   assign io_Mem_rd = mem;
-  assign io_Mem_wr = s;
+  assign io_Mem_wr_valid = s;
   assign io_ALU_func = _GEN_19;
   assign _T_32 = io_IR[6];
   assign _T_34 = _T_32 == 1'h0;

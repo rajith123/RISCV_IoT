@@ -3,7 +3,7 @@ circuit Decorder :
   module Decorder : 
     input clock : Clock
     input reset : UInt<1>
-    output io : {flip IR : UInt<32>, flip br_eq : UInt<1>, flip br_lt : UInt<1>, flip br_ltu : UInt<1>, flip DataMem_rdy : UInt<1>, BUS_A_sel : UInt<1>, BUS_B_sel : UInt<2>, WB_sel : UInt<2>, BRJMP_sel : UInt<1>, JBType_sel : UInt<1>, PC_MUX_sel : UInt<2>, WEN_RegFile : UInt<1>, Mem_rd : UInt<1>, Mem_wr : UInt<1>, ALU_func : UInt<4>}
+    output io : {flip IR : UInt<32>, flip br_eq : UInt<1>, flip br_lt : UInt<1>, flip br_ltu : UInt<1>, flip DataMem_rdy : UInt<1>, BUS_A_sel : UInt<1>, BUS_B_sel : UInt<2>, WB_sel : UInt<2>, BRJMP_sel : UInt<1>, JBType_sel : UInt<1>, PC_MUX_sel : UInt<2>, WEN_RegFile : UInt<1>, Mem_rd : UInt<1>, Mem_wr_valid : UInt<1>, ALU_func : UInt<4>}
     
     io is invalid
     io is invalid
@@ -234,14 +234,14 @@ circuit Decorder :
     node _T_251 = eq(_T_249, UInt<1>("h00")) @[Decorder.scala 114:44]
     node _T_252 = and(_T_248, _T_251) @[Decorder.scala 114:41]
     io.Mem_rd <= _T_252 @[Decorder.scala 114:15]
-    node _T_253 = bits(io.IR, 6, 6) @[Decorder.scala 115:24]
-    node _T_255 = eq(_T_253, UInt<1>("h00")) @[Decorder.scala 115:18]
-    node _T_256 = bits(io.IR, 5, 5) @[Decorder.scala 115:36]
-    node _T_257 = and(_T_255, _T_256) @[Decorder.scala 115:28]
-    node _T_258 = bits(io.IR, 4, 4) @[Decorder.scala 115:49]
-    node _T_260 = eq(_T_258, UInt<1>("h00")) @[Decorder.scala 115:43]
-    node _T_261 = and(_T_257, _T_260) @[Decorder.scala 115:40]
-    io.Mem_wr <= _T_261 @[Decorder.scala 115:15]
+    node _T_253 = bits(io.IR, 6, 6) @[Decorder.scala 115:30]
+    node _T_255 = eq(_T_253, UInt<1>("h00")) @[Decorder.scala 115:24]
+    node _T_256 = bits(io.IR, 5, 5) @[Decorder.scala 115:42]
+    node _T_257 = and(_T_255, _T_256) @[Decorder.scala 115:34]
+    node _T_258 = bits(io.IR, 4, 4) @[Decorder.scala 115:55]
+    node _T_260 = eq(_T_258, UInt<1>("h00")) @[Decorder.scala 115:49]
+    node _T_261 = and(_T_257, _T_260) @[Decorder.scala 115:46]
+    io.Mem_wr_valid <= _T_261 @[Decorder.scala 115:21]
     node _T_262 = bits(io.IR, 6, 6) @[Decorder.scala 117:33]
     node _T_264 = eq(_T_262, UInt<1>("h00")) @[Decorder.scala 117:27]
     node _T_265 = bits(io.IR, 5, 5) @[Decorder.scala 117:45]

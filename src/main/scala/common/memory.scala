@@ -59,7 +59,7 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 	
 	for (i <- 0 until num_ports)
 	{
-		io.port(i).resp.valid := Reg(next = io.port(i).req.valid)
+		io.port(i).resp.valid := Reg(init = Bool(false), next = io.port(i).req.valid)
 
 		io.port(i).req.ready := Bool(true) // for now
 
@@ -114,27 +114,24 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 
 object StoreDataGen
 {
-	def apply(din: Bits, typ: Bits): Vec[UInt] =
+	def apply(din: Bits, typ: UInt): Vec[UInt] =
 	{
-		val word 	= 	(typ.equals(MT_W)) || (typ.equals(MT_WU))
-		val half 	= 	(typ.equals(MT_H)) || (typ.equals(MT_HU))
-		val byte 	= 	(typ.equals(MT_B)) || (typ.equals(MT_BU))
+//		val word 	= 	(typ.equals(MT_W)) || (typ.equals(MT_WU))
+//		val half 	= 	(typ.equals(MT_H)) || (typ.equals(MT_HU))
+//		val byte 	= 	(typ.equals(MT_B)) || (typ.equals(MT_BU))
+
+	        val word 	= 	(typ === MT_W) || (typ === MT_WU)
+	        val half 	= 	(typ === MT_H) || (typ === MT_HU)
+	        val byte	= 	(typ === MT_B) || (typ === MT_BU)
 
 		val dout 	=  	Wire(Vec(4, UInt(8.W)))
-		dout 		:=  	Mux(Bool(byte), Vec(din( 7,0), din( 7,0), din( 7,0), din( 7,0)),
-					Mux(Bool(half), Vec(din( 7,0), din(15,8), din( 7,0), din(15,8)),
+		dout 		:=  	Mux(byte, Vec(din( 7,0), din( 7,0), din( 7,0), din( 7,0)),
+					Mux(half, Vec(din( 7,0), din(15,8), din( 7,0), din(15,8)),
 							Vec(din( 7,0), din(15,8), din(23,16), din(31,24))))
 //		dout 		:=  	Mux(Bool(byte), Vec(Seq.fill(4)(din(7,0))),
 //					Mux(Bool(half), Vec(Seq(din(15,8), din( 7,0), din(15,8), din( 7,0))),
 //							Vec(Seq(din(31,24), din(23,16), din(15,8), din( 7,0)))))
 
-//	        val word 	= 	(typ === MT_W) || (typ === MT_WU)
-//	        val half 	= 	(typ === MT_H) || (typ === MT_HU)
-//	        val byte	= 	(typ === MT_B) || (typ === MT_BU)
-
-//		val dout 	=  	Mux(byte, Vec(4, din( 7,0)),
-//					Mux(half, Vec(din(15,8), din( 7,0), din(15,8), din( 7,0)),
-//							Vec(din(31,24), din(23,16), din(15,8), din( 7,0))))
 
 		return dout
 	}

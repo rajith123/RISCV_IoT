@@ -159,7 +159,7 @@ module ALU(
   assign less = _T_20 ? _T_21 : _T_25;
   assign shamt = io_in2[4:0];
   assign _T_26 = io_fn == 4'h5;
-  assign _T_27 = io_fn == 4'hb;
+  assign _T_27 = io_fn == 4'hd;
   assign _T_28 = _T_26 | _T_27;
   assign _T_33 = io_in1[31:16];
   assign _T_34 = {{16'd0}, _T_33};
@@ -256,10 +256,10 @@ module ALU(
   assign _T_143 = _T_138 ? _T_139 : _T_142;
   assign bitwise_logic = _T_136 ? _T_137 : _T_143;
   assign _T_144 = io_fn == 4'h0;
-  assign _T_145 = io_fn == 4'ha;
+  assign _T_145 = io_fn == 4'h8;
   assign _T_146 = _T_144 | _T_145;
-  assign _T_147 = io_fn == 4'hc;
-  assign _T_148 = io_fn == 4'he;
+  assign _T_147 = io_fn == 4'ha;
+  assign _T_148 = io_fn == 4'hb;
   assign _T_149 = _T_147 | _T_148;
   assign _T_153 = io_fn == 4'h1;
   assign _T_154 = _T_153 ? shout_l : bitwise_logic;

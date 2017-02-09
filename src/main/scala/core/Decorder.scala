@@ -18,7 +18,7 @@ class Decorder extends Module{
         val PC_MUX_sel = Output(UInt(width = 2))
         val WEN_RegFile = Output(UInt(width = 1))
         val Mem_rd = Output(UInt(width = 1))
-        val Mem_wr = Output(UInt(width = 1))
+        val Mem_wr_valid = Output(UInt(width = 1))
         val ALU_func = Output(UInt(width = 4))
 	})
 	val rs2 = !io.IR(6) && io.IR(5) && io.IR(4)
@@ -101,18 +101,24 @@ class Decorder extends Module{
     when((jmp_jalr || br)) {
        io.PC_MUX_sel := UInt(2,2)
     }
-    when(pc4 && (io.DataMem_rdy === UInt(0,1))) {
-        io.PC_MUX_sel := UInt(1,2) //STALL
-    }
-    when(pc4 && io.DataMem_rdy === UInt(1,1)) {
+when(pc4){
+    when(io.Mem_rd === UInt(1,1) || io.Mem_wr_valid === UInt(1,1)){
+        when(io.DataMem_rdy === UInt(0,1)) {
+            io.PC_MUX_sel := UInt(1,2) //STALL
+        }
+        when(io.DataMem_rdy === UInt(1,1)) {
+            io.PC_MUX_sel := UInt(0,2) //PC+4
+        }
+    }.otherwise{
         io.PC_MUX_sel := UInt(0,2) //PC+4
     }
+}
 
 
     io.WEN_RegFile := (!io.IR(6) && io.IR(4) && !io.IR(3)) || (!io.IR(6) && !io.IR(5) && !io.IR(3) && !io.IR(2)) || (io.IR(6) && io.IR(5) && !io.IR(4) && !io.IR(2))
 
     io.Mem_rd := !io.IR(5) && !io.IR(4) && !io.IR(3)
-    io.Mem_wr := !io.IR(6) && io.IR(5) && !io.IR(4)
+    io.Mem_wr_valid := !io.IR(6) && io.IR(5) && !io.IR(4)
 
     val ALU_func4_bit  = (!io.IR(6) && io.IR(5) && io.IR(4) && !io.IR(2) && !io.IR(14) && io.IR(13)) || io.IR(30)
 

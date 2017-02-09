@@ -21,17 +21,18 @@
 
 
 module core(
-    input   		[31:0] from_ins_mem,
-    input   		[31:0] from_data_mem,
-    output  reg 	[31:0] to_data_mem_reg,
-    input   		       data_valid,
-    input   		       data_ready,
-    output  reg	[31:0] ins_mem_addr,
-    output  reg	[31:0] data_mem_addr_reg,
-    input          		 clk,
-    input          		 reset,
-	 output 	reg	 		 mem_rd_reg,
-	 output	reg	 		 mem_wr_reg
+		 input   		[31:0] from_ins_mem,
+		 input   		[31:0] from_data_mem,
+		 output  reg 	[31:0] to_data_mem_reg,
+//		 input   		       data_valid,
+		 input   		       data_ready,
+		 output  reg	[31:0] ins_mem_addr,
+		 output  reg	[31:0] data_mem_addr_reg,
+		 input          		 clk,
+		 input          		 reset,
+		 output 	reg	 		 mem_rd_reg,
+		 output	reg	 		 mem_wr_valid_reg,
+		 output  reg   [ 2:0] mem_func3_reg 
     );
     
     wire    [31:0]  from_IR;
@@ -54,9 +55,7 @@ module core(
     wire   			  BRJMP_sel;
 	 
     wire   	[31:0]  to_pc_mux;
-    
-    wire    [31:0]  from_pc;
-    
+        
     wire    [31:0]  bypass_reg;
     wire    [31:0]  rs1_data;
     wire            rs1_bypass_mux_sel;
@@ -93,13 +92,15 @@ module core(
 	 
 	 
 	 wire				 mem_rd;
-	 wire				 mem_wr;
+	 wire				 mem_wr_valid;
 	 
 	 	 
     wire	  [31:0] to_data_mem;
     wire	  [31:0] data_mem_addr;
 	 
 	 wire				regfile_wen;
+	 
+	 wire   [ 1:0] wb_sel;
 
     
     //Pipelining registers
@@ -126,8 +127,6 @@ module core(
 	 
     assign pc_4   = pc_out + 32'd4;
 	 
-    assign alu_fn   = {from_IR[0],from_IR[14:12]};//Remember to edit
-	 
 	 assign to_data_mem	= rs2_data;
 	 assign data_mem_addr	= alu_out;
     
@@ -137,12 +136,15 @@ module core(
 			  wb_addr_reg     	<= 0;
 			  
 			  pc_reg          	<= 0;
+			  
 			  pc_reg_2          	<= 0;
 			  
 			  reg_write_sel   	<= 0;
 			  
 			  mem_rd_reg 			<= 0;
-			  mem_wr_reg 			<= 0;
+			  mem_wr_valid_reg 	<= 0;
+			  
+			  mem_func3_reg		<= 0;
 			  
 			  data_mem_addr_reg	<= 0;
 			  to_data_mem_reg 	<= 0;
@@ -156,13 +158,15 @@ module core(
 			  alu_out_reg     	<= alu_out;
 			  wb_addr_reg     	<= wb_addr;
 			  
-			  pc_reg          	<= from_pc;
+			  pc_reg          	<= pc_out;
 			  pc_reg_2          	<= pc_reg;
 			  
 			  reg_write_sel   	<= wb_sel;
 			  
 			  mem_rd_reg 			<= mem_rd;
-			  mem_wr_reg 			<= mem_wr;
+			  mem_wr_valid_reg 	<= mem_wr_valid;
+			  
+			  mem_func3_reg		<= from_IR[14:12];
 			  
 			  data_mem_addr_reg	<= data_mem_addr;
 			  to_data_mem_reg 	<= to_data_mem;
@@ -177,7 +181,7 @@ module core(
     ALU alu32(
     .clock(clk),
     .reset(reset),
-    .io_fn(4'b0000),		//modification required
+    .io_fn(alu_fn),		
     .io_in2(alu_in_b),
     .io_in1(alu_in_a),
     .io_out(alu_out),
@@ -236,7 +240,8 @@ module core(
     .io_PC_MUX_sel(PC_MUX_sel),
 	 .io_WEN_RegFile(regfile_wen),
 	 .io_Mem_rd(mem_rd),
-	 .io_Mem_wr(mem_wr)
+	 .io_Mem_wr_valid(mem_wr_valid),
+	 .io_ALU_func(alu_fn)
     );
     
     branch_check br_compare(
@@ -325,5 +330,13 @@ module core(
 	  .io_pc_in(to_pc),
 	  .io_pc_out(pc_out)
 	  );
+	  
+	  ByPassBridge ByPassBridge(
+		.clock(clk),
+		.reset(reset),
+		.io_IR(from_IR),
+		.io_rs1_bypass_mux_sel(rs1_bypass_mux_sel),
+		.io_rs2_bypass_mux_sel(rs2_bypass_mux_sel)	
+	 );
 	  
 endmodule

@@ -73,7 +73,7 @@ module tb_cpath_decode;
 		.io_PC_MUX_sel(io_PC_MUX_sel),
 		.io_WEN_RegFile(io_WEN_RegFile),
 		.io_Mem_rd(io_Mem_rd),
-		.io_Mem_wr(io_Mem_wr)
+		.io_Mem_wr_valid(io_Mem_wr)
 	);
 
 	initial begin
@@ -84,7 +84,7 @@ module tb_cpath_decode;
 		io_br_eq = 0;
 		io_br_lt = 0;
 		io_br_ltu = 0;
-		io_DataMem_rdy = 1;
+		io_DataMem_rdy = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
@@ -93,9 +93,9 @@ module tb_cpath_decode;
 				
 		
 	
-		temp1 = 32'd177902135; 
+		//temp1 = 32'd0; 
 		//io_IR = {temp1,7'b0110111};  //LUI
-		io_IR = 32'd177902135;  //LUI
+		io_IR = 32'd0;  //LUI
 		
 		opcode = io_IR[6:2];
 		#100;

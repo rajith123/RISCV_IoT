@@ -96,23 +96,22 @@ class Decorder extends Module{
 
     val jmp_jalr = io.IR(6) && io.IR(2)
     val br = io.IR(6) && !io.IR(4) && !io.IR(2)
-    val pc4 = !io.IR(6) || io.IR(4)
+    //val pc4 = !io.IR(6) || io.IR(4)
 
-    when((jmp_jalr || br)) {
+    when(jmp_jalr || (br && branch)) {
        io.PC_MUX_sel := UInt(2,2)
-    }
-when(pc4){
-    when(io.Mem_rd === UInt(1,1) || io.Mem_wr_valid === UInt(1,1)){
-        when(io.DataMem_rdy === UInt(0,1)) {
-            io.PC_MUX_sel := UInt(1,2) //STALL
-        }
-        when(io.DataMem_rdy === UInt(1,1)) {
+    }.otherwise {
+        when(io.Mem_rd === UInt(1,1) || io.Mem_wr_valid === UInt(1,1)){
+            when(io.DataMem_rdy === UInt(0,1)) {
+                io.PC_MUX_sel := UInt(1,2) //STALL
+            }
+            when(io.DataMem_rdy === UInt(1,1)) {
+                io.PC_MUX_sel := UInt(0,2) //PC+4
+            }
+        }.otherwise{
             io.PC_MUX_sel := UInt(0,2) //PC+4
         }
-    }.otherwise{
-        io.PC_MUX_sel := UInt(0,2) //PC+4
     }
-}
 
 
     io.WEN_RegFile := (!io.IR(6) && io.IR(4) && !io.IR(3)) || (!io.IR(6) && !io.IR(5) && !io.IR(3) && !io.IR(2)) || (io.IR(6) && io.IR(5) && !io.IR(4) && !io.IR(2))

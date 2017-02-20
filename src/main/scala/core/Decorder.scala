@@ -20,6 +20,7 @@ class Decorder extends Module{
         val Mem_rd = Output(UInt(width = 1))
         val Mem_wr_valid = Output(UInt(width = 1))
         val ALU_func = Output(UInt(width = 4))
+        val IR_skip_Mux_sel = Output(UInt(width = 1))
 	})
 	val rs2 = !io.IR(6) && io.IR(5) && io.IR(4)
     val i = (!io.IR(5) && !io.IR(2)) || (!io.IR(4) && !io.IR(3) && io.IR(2))
@@ -131,5 +132,7 @@ class Decorder extends Module{
     }.otherwise {
         io.ALU_func := UInt(0,4)
     }
+
+    io.IR_skip_Mux_sel := (br && branch)
     
 }

@@ -64,7 +64,8 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 		io.port(i).req.ready := Bool(true) // for now
 
 		val req_valid      = io.port(i).req.valid
-		val req_addr       = io.port(i).req.bits.addr
+		//val req_addr       = io.port(i).req.bits.addr
+		val req_addr       = Cat(io.port(i).req.bits.addr(31,15), UInt(i), io.port(i).req.bits.addr(13,0))
 		val req_data       = io.port(i).req.bits.data
 		val req_fn         = io.port(i).req.bits.fcn
 		val req_typ        = io.port(i).req.bits.typ
@@ -88,7 +89,7 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 			 read_data := chipMem.read(data_idx)
 			 //read_data := Vec(UInt(5), UInt(0), UInt(0), UInt(0))
 			 rdata     := LoadDataGen((read_data.asUInt >> bit_shift_amt), req_typ)
-			 //rdata     := StoreDataGen(req_data, req_typ).asUInt + UInt(5)
+			 //rdata     := (StoreMask(req_typ) << byte_shift_amt)
 		}
 		
 		io.port(i).resp.bits.data := rdata

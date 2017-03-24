@@ -7,13 +7,13 @@ import Constants._
 trait MemOpConstants 
 {
 	val MT_X  = UInt(0, 3)	// memory transfer type
-	val MT_B  = UInt(1, 3)
-	val MT_H  = UInt(2, 3)
-	val MT_W  = UInt(3, 3)
-	val MT_D  = UInt(4, 3)
-	val MT_BU = UInt(5, 3)
-	val MT_HU = UInt(6, 3)
-	val MT_WU = UInt(7, 3)
+	val MT_B  = UInt(0, 3)
+	val MT_H  = UInt(1, 3)
+	val MT_W  = UInt(2, 3)
+	val MT_D  = UInt(3, 3)
+	val MT_BU = UInt(4, 3)
+	val MT_HU = UInt(5, 3)
+	val MT_WU = UInt(6, 3)
 
 	val M_X   = UInt("b0", 1)	// access type
 	val M_RD  = UInt("b0", 1) 	// load

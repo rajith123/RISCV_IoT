@@ -274,5 +274,6 @@ circuit Decorder :
       io.ALU_func <= UInt<4>("h00") @[Decorder.scala 134:21]
       skip @[Decorder.scala 133:17]
     node _T_294 = and(br, branch) @[Decorder.scala 137:31]
-    io.IR_skip_Mux_sel <= _T_294 @[Decorder.scala 137:24]
+    node _T_295 = or(_T_294, jmp_jalr) @[Decorder.scala 137:42]
+    io.IR_skip_Mux_sel <= _T_295 @[Decorder.scala 137:24]
     

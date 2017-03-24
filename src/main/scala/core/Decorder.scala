@@ -134,6 +134,6 @@ class Decorder extends Module{
         io.ALU_func := UInt(0,4)
     }
 
-    io.IR_skip_Mux_sel := (br && branch)
+    io.IR_skip_Mux_sel := (br && branch) || jmp_jalr
     
 }

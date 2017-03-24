@@ -111,6 +111,7 @@ module Decorder(
   wire [3:0] _GEN_16;
   wire  _T_292;
   wire [3:0] _GEN_18;
+  wire  _T_295;
   assign io_BUS_A_sel = u;
   assign io_BUS_B_sel = _GEN_3;
   assign io_WB_sel = _GEN_8;
@@ -121,7 +122,7 @@ module Decorder(
   assign io_Mem_rd = mem;
   assign io_Mem_wr_valid = s;
   assign io_ALU_func = _GEN_18;
-  assign io_IR_skip_Mux_sel = _T_193;
+  assign io_IR_skip_Mux_sel = _T_295;
   assign _T_34 = io_IR[6];
   assign _T_36 = _T_34 == 1'h0;
   assign _T_37 = io_IR[5];
@@ -202,4 +203,5 @@ module Decorder(
   assign _GEN_16 = _T_287 ? _T_290 : _T_285;
   assign _T_292 = _T_282 == 1'h0;
   assign _GEN_18 = _T_292 ? 4'h0 : _GEN_16;
+  assign _T_295 = _T_193 | jmp_jalr;
 endmodule

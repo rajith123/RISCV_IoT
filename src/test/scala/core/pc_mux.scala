@@ -14,7 +14,7 @@ class pc_muxTests(c: pc_mux) extends PeekPokeTester(c) {
               poke(c.io.jmp_br, i2)
               step(1)
               val out = if(s1 == 1) {
-                          if (s0 == 1) i0 else i2
+                          if (s0 == 1) i2 else i2
                         } else {
                           if (s0 == 1) i1 else i0 
                         }

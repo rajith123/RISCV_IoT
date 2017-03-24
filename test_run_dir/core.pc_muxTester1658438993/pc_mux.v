@@ -23,14 +23,18 @@ module pc_mux(
   wire  _T_12;
   wire  _T_13;
   wire  _T_14;
-  wire [31:0] _T_15;
+  wire  _T_15;
   wire [31:0] _T_16;
   wire [31:0] _T_17;
-  assign io_to_pc = _T_17;
+  wire [31:0] _T_18;
+  wire [31:0] _T_19;
+  assign io_to_pc = _T_19;
   assign _T_12 = io_pc_sel == 2'h0;
   assign _T_13 = io_pc_sel == 2'h1;
   assign _T_14 = io_pc_sel == 2'h2;
-  assign _T_15 = _T_14 ? io_jmp_br : io_pc_4;
-  assign _T_16 = _T_13 ? io_pc : _T_15;
-  assign _T_17 = _T_12 ? io_pc_4 : _T_16;
+  assign _T_15 = io_pc_sel == 2'h3;
+  assign _T_16 = _T_15 ? io_jmp_br : io_pc_4;
+  assign _T_17 = _T_14 ? io_jmp_br : _T_16;
+  assign _T_18 = _T_13 ? io_pc : _T_17;
+  assign _T_19 = _T_12 ? io_pc_4 : _T_18;
 endmodule

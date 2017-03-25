@@ -123,7 +123,7 @@ class Decorder extends Module{
 
     //val ALU_func4_bit  = (!io.IR(6) && io.IR(5) && io.IR(4) && !io.IR(2) && !io.IR(14) && io.IR(13)) || io.IR(30)
     val ALU_func4_bit  = ((io.IR(30)&&io.IR(14)&& !io.IR(13)&&io.IR(12)&&io.IR(4)) || (io.IR(30)&& !io.IR(14)&& !io.IR(13)&& !io.IR(12)&& !io.IR(5)&& !io.IR(4)))&&(!io.IR(6)&& !io.IR(3)&& !io.IR(2))
-
+// bit changed
 
     when (!io.IR(6) && io.IR(4) && !io.IR(2)){
         when (ALU_func4_bit) {

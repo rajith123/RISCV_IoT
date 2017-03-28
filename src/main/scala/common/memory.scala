@@ -7,13 +7,13 @@ import Constants._
 trait MemOpConstants 
 {
 	val MT_X  = UInt(0, 3)	// memory transfer type
-	val MT_B  = UInt(1, 3)
-	val MT_H  = UInt(2, 3)
-	val MT_W  = UInt(3, 3)
-	val MT_D  = UInt(4, 3)
-	val MT_BU = UInt(5, 3)
-	val MT_HU = UInt(6, 3)
-	val MT_WU = UInt(7, 3)
+	val MT_B  = UInt(0, 3)
+	val MT_H  = UInt(1, 3)
+	val MT_W  = UInt(2, 3)
+	val MT_D  = UInt(3, 3)
+	val MT_BU = UInt(4, 3)
+	val MT_HU = UInt(5, 3)
+	val MT_WU = UInt(6, 3)
 
 	val M_X   = UInt("b0", 1)	// access type
 	val M_RD  = UInt("b0", 1) 	// load
@@ -50,12 +50,12 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 		val port = Vec(num_ports, Flipped(new MemPortIO(data_width = config.xprlen)))	
 	})
 	
-	val num_bytes_per_line = 4
-	val num_lines = num_bytes/num_bytes_per_line
+	val num_bytes_per_line 	= 4
+	val num_lines 		= num_bytes/num_bytes_per_line
 	
 	val lsb_idx = log2Up(num_bytes_per_line)	// index of lsb in address
 	
-	val chipMem = Mem(Vec(4, UInt(width = 8)), num_lines)	// memory
+	val chipMem = Seq.fill(2)(Mem(Vec(4, UInt(width = 8)), num_lines/2))	// memory
 	
 	for (i <- 0 until num_ports)
 	{
@@ -64,8 +64,8 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 		io.port(i).req.ready := Bool(true) // for now
 
 		val req_valid      = io.port(i).req.valid
-		//val req_addr       = io.port(i).req.bits.addr
-		val req_addr       = Cat(io.port(i).req.bits.addr(31,15), UInt(i), io.port(i).req.bits.addr(13,0))
+		val req_addr       = io.port(i).req.bits.addr
+		//val req_addr       = Cat(io.port(i).req.bits.addr(31,15), UInt(i), io.port(i).req.bits.addr(13,0))
 		val req_data       = io.port(i).req.bits.data
 		val req_fn         = io.port(i).req.bits.fcn
 		val req_typ        = io.port(i).req.bits.typ
@@ -81,12 +81,12 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 		
 		if (seq_read)
 		{
-			 read_data := chipMem(r_data_idx)
+			 read_data := chipMem(i)(r_data_idx)
 			 rdata     := LoadDataGen((read_data.asUInt >> Reg(next=bit_shift_amt)), Reg(next=req_typ))
 		}
 		else
 		{
-			 read_data := chipMem.read(data_idx)
+			 read_data := chipMem(i).read(data_idx)
 			 //read_data := Vec(UInt(5), UInt(0), UInt(0), UInt(0))
 			 rdata     := LoadDataGen((read_data.asUInt >> bit_shift_amt), req_typ)
 			 //rdata     := (StoreMask(req_typ) << byte_shift_amt)
@@ -103,7 +103,7 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 			 
 			 //val wmask = Seq(mask(31,24), mask(23,16), mask(15, 8), mask( 7, 0))
 
-			 chipMem.write(data_idx, wdata, wmask)
+			 chipMem(i).write(data_idx, wdata, wmask)
 		}
 		.elsewhen (req_valid && req_fn === M_RD)
 		{

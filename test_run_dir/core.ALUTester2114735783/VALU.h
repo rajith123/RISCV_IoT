@@ -34,19 +34,19 @@ VL_MODULE(VALU) {
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code
-    VL_SIG8(ALU__DOT___T_28,0,0);
+    VL_SIG8(ALU__DOT___T_29,0,0);
     //char	__VpadToAlign25[3];
-    VL_SIG(ALU__DOT___T_39,31,0);
-    VL_SIG(ALU__DOT___T_49,31,0);
-    VL_SIG(ALU__DOT___T_59,31,0);
-    VL_SIG(ALU__DOT___T_69,31,0);
+    VL_SIG(ALU__DOT___T_40,31,0);
+    VL_SIG(ALU__DOT___T_50,31,0);
+    VL_SIG(ALU__DOT___T_60,31,0);
+    VL_SIG(ALU__DOT___T_70,31,0);
     VL_SIG(ALU__DOT__shin,31,0);
-    VL_SIG(ALU__DOT___T_96,31,0);
-    VL_SIG(ALU__DOT___T_106,31,0);
-    VL_SIG(ALU__DOT___T_116,31,0);
-    VL_SIG(ALU__DOT___T_126,31,0);
-    VL_SIG64(ALU__DOT___T_17,32,0);
-    VL_SIG64(ALU__DOT___T_85,32,0);
+    VL_SIG(ALU__DOT___T_97,31,0);
+    VL_SIG(ALU__DOT___T_107,31,0);
+    VL_SIG(ALU__DOT___T_117,31,0);
+    VL_SIG(ALU__DOT___T_127,31,0);
+    VL_SIG64(ALU__DOT___T_18,32,0);
+    VL_SIG64(ALU__DOT___T_86,32,0);
     
     // LOCAL VARIABLES
     // Internals; generally not touched by application code

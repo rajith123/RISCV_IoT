@@ -71,7 +71,7 @@ VL_INLINE_OPT void VALU::_combo__TOP__1(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_combo__TOP__1\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_17 = (VL_ULL(0x1ffffffff) 
+    vlTOPp->ALU__DOT___T_18 = (VL_ULL(0x1ffffffff) 
 			       & ((QData)((IData)(vlTOPp->io_in1)) 
 				  + (QData)((IData)(
 						    ((8U 
@@ -80,9 +80,9 @@ VL_INLINE_OPT void VALU::_combo__TOP__1(VALU__Syms* __restrict vlSymsp) {
 								(VL_ULL(0x1ffffffff) 
 								 & VL_NEGATE_Q((QData)((IData)(vlTOPp->io_in2)))))
 						      : vlTOPp->io_in2)))));
-    vlTOPp->ALU__DOT___T_28 = ((5U == (IData)(vlTOPp->io_fn)) 
+    vlTOPp->ALU__DOT___T_29 = ((5U == (IData)(vlTOPp->io_fn)) 
 			       | (0xdU == (IData)(vlTOPp->io_fn)));
-    vlTOPp->ALU__DOT___T_39 = ((0xffffU & (vlTOPp->io_in1 
+    vlTOPp->ALU__DOT___T_40 = ((0xffffU & (vlTOPp->io_in1 
 					   >> 0x10U)) 
 			       | (0xffff0000U & (vlTOPp->io_in1 
 						 << 0x10U)));
@@ -92,7 +92,7 @@ void VALU::_settle__TOP__2(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_settle__TOP__2\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_17 = (VL_ULL(0x1ffffffff) 
+    vlTOPp->ALU__DOT___T_18 = (VL_ULL(0x1ffffffff) 
 			       & ((QData)((IData)(vlTOPp->io_in1)) 
 				  + (QData)((IData)(
 						    ((8U 
@@ -101,16 +101,16 @@ void VALU::_settle__TOP__2(VALU__Syms* __restrict vlSymsp) {
 								(VL_ULL(0x1ffffffff) 
 								 & VL_NEGATE_Q((QData)((IData)(vlTOPp->io_in2)))))
 						      : vlTOPp->io_in2)))));
-    vlTOPp->ALU__DOT___T_28 = ((5U == (IData)(vlTOPp->io_fn)) 
+    vlTOPp->ALU__DOT___T_29 = ((5U == (IData)(vlTOPp->io_fn)) 
 			       | (0xdU == (IData)(vlTOPp->io_fn)));
-    vlTOPp->ALU__DOT___T_39 = ((0xffffU & (vlTOPp->io_in1 
+    vlTOPp->ALU__DOT___T_40 = ((0xffffU & (vlTOPp->io_in1 
 					   >> 0x10U)) 
 			       | (0xffff0000U & (vlTOPp->io_in1 
 						 << 0x10U)));
-    vlTOPp->io_adder_out = (IData)(vlTOPp->ALU__DOT___T_17);
-    vlTOPp->ALU__DOT___T_49 = ((0xff00ffU & (vlTOPp->ALU__DOT___T_39 
+    vlTOPp->io_adder_out = (IData)(vlTOPp->ALU__DOT___T_18);
+    vlTOPp->ALU__DOT___T_50 = ((0xff00ffU & (vlTOPp->ALU__DOT___T_40 
 					     >> 8U)) 
-			       | (0xff00ff00U & (vlTOPp->ALU__DOT___T_39 
+			       | (0xff00ff00U & (vlTOPp->ALU__DOT___T_40 
 						 << 8U)));
 }
 
@@ -118,14 +118,14 @@ VL_INLINE_OPT void VALU::_combo__TOP__3(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_combo__TOP__3\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->io_adder_out = (IData)(vlTOPp->ALU__DOT___T_17);
-    vlTOPp->ALU__DOT___T_49 = ((0xff00ffU & (vlTOPp->ALU__DOT___T_39 
+    vlTOPp->io_adder_out = (IData)(vlTOPp->ALU__DOT___T_18);
+    vlTOPp->ALU__DOT___T_50 = ((0xff00ffU & (vlTOPp->ALU__DOT___T_40 
 					     >> 8U)) 
-			       | (0xff00ff00U & (vlTOPp->ALU__DOT___T_39 
+			       | (0xff00ff00U & (vlTOPp->ALU__DOT___T_40 
 						 << 8U)));
-    vlTOPp->ALU__DOT___T_59 = ((0xf0f0f0fU & (vlTOPp->ALU__DOT___T_49 
+    vlTOPp->ALU__DOT___T_60 = ((0xf0f0f0fU & (vlTOPp->ALU__DOT___T_50 
 					      >> 4U)) 
-			       | (0xf0f0f0f0U & (vlTOPp->ALU__DOT___T_49 
+			       | (0xf0f0f0f0U & (vlTOPp->ALU__DOT___T_50 
 						 << 4U)));
 }
 
@@ -133,13 +133,13 @@ void VALU::_settle__TOP__4(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_settle__TOP__4\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_59 = ((0xf0f0f0fU & (vlTOPp->ALU__DOT___T_49 
+    vlTOPp->ALU__DOT___T_60 = ((0xf0f0f0fU & (vlTOPp->ALU__DOT___T_50 
 					      >> 4U)) 
-			       | (0xf0f0f0f0U & (vlTOPp->ALU__DOT___T_49 
+			       | (0xf0f0f0f0U & (vlTOPp->ALU__DOT___T_50 
 						 << 4U)));
-    vlTOPp->ALU__DOT___T_69 = ((0x33333333U & (vlTOPp->ALU__DOT___T_59 
+    vlTOPp->ALU__DOT___T_70 = ((0x33333333U & (vlTOPp->ALU__DOT___T_60 
 					       >> 2U)) 
-			       | (0xccccccccU & (vlTOPp->ALU__DOT___T_59 
+			       | (0xccccccccU & (vlTOPp->ALU__DOT___T_60 
 						 << 2U)));
 }
 
@@ -147,17 +147,17 @@ VL_INLINE_OPT void VALU::_combo__TOP__5(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_combo__TOP__5\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_69 = ((0x33333333U & (vlTOPp->ALU__DOT___T_59 
+    vlTOPp->ALU__DOT___T_70 = ((0x33333333U & (vlTOPp->ALU__DOT___T_60 
 					       >> 2U)) 
-			       | (0xccccccccU & (vlTOPp->ALU__DOT___T_59 
+			       | (0xccccccccU & (vlTOPp->ALU__DOT___T_60 
 						 << 2U)));
-    vlTOPp->ALU__DOT__shin = ((IData)(vlTOPp->ALU__DOT___T_28)
+    vlTOPp->ALU__DOT__shin = ((IData)(vlTOPp->ALU__DOT___T_29)
 			       ? vlTOPp->io_in1 : (
 						   (0x55555555U 
-						    & (vlTOPp->ALU__DOT___T_69 
+						    & (vlTOPp->ALU__DOT___T_70 
 						       >> 1U)) 
 						   | (0xaaaaaaaaU 
-						      & (vlTOPp->ALU__DOT___T_69 
+						      & (vlTOPp->ALU__DOT___T_70 
 							 << 1U))));
 }
 
@@ -165,15 +165,15 @@ void VALU::_settle__TOP__6(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_settle__TOP__6\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT__shin = ((IData)(vlTOPp->ALU__DOT___T_28)
+    vlTOPp->ALU__DOT__shin = ((IData)(vlTOPp->ALU__DOT___T_29)
 			       ? vlTOPp->io_in1 : (
 						   (0x55555555U 
-						    & (vlTOPp->ALU__DOT___T_69 
+						    & (vlTOPp->ALU__DOT___T_70 
 						       >> 1U)) 
 						   | (0xaaaaaaaaU 
-						      & (vlTOPp->ALU__DOT___T_69 
+						      & (vlTOPp->ALU__DOT___T_70 
 							 << 1U))));
-    vlTOPp->ALU__DOT___T_85 = (VL_ULL(0x1ffffffff) 
+    vlTOPp->ALU__DOT___T_86 = (VL_ULL(0x1ffffffff) 
 			       & VL_SHIFTRS_QQI(33,33,5, 
 						(((QData)((IData)(
 								  (1U 
@@ -191,7 +191,7 @@ VL_INLINE_OPT void VALU::_combo__TOP__7(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_combo__TOP__7\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_85 = (VL_ULL(0x1ffffffff) 
+    vlTOPp->ALU__DOT___T_86 = (VL_ULL(0x1ffffffff) 
 			       & VL_SHIFTRS_QQI(33,33,5, 
 						(((QData)((IData)(
 								  (1U 
@@ -203,9 +203,9 @@ VL_INLINE_OPT void VALU::_combo__TOP__7(VALU__Syms* __restrict vlSymsp) {
 						 | (QData)((IData)(vlTOPp->ALU__DOT__shin))), 
 						(0x1fU 
 						 & vlTOPp->io_in2)));
-    vlTOPp->ALU__DOT___T_96 = ((0xffffU & (IData)((vlTOPp->ALU__DOT___T_85 
+    vlTOPp->ALU__DOT___T_97 = ((0xffffU & (IData)((vlTOPp->ALU__DOT___T_86 
 						   >> 0x10U))) 
-			       | (0xffff0000U & ((IData)(vlTOPp->ALU__DOT___T_85) 
+			       | (0xffff0000U & ((IData)(vlTOPp->ALU__DOT___T_86) 
 						 << 0x10U)));
 }
 
@@ -213,13 +213,13 @@ void VALU::_settle__TOP__8(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_settle__TOP__8\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_96 = ((0xffffU & (IData)((vlTOPp->ALU__DOT___T_85 
+    vlTOPp->ALU__DOT___T_97 = ((0xffffU & (IData)((vlTOPp->ALU__DOT___T_86 
 						   >> 0x10U))) 
-			       | (0xffff0000U & ((IData)(vlTOPp->ALU__DOT___T_85) 
+			       | (0xffff0000U & ((IData)(vlTOPp->ALU__DOT___T_86) 
 						 << 0x10U)));
-    vlTOPp->ALU__DOT___T_106 = ((0xff00ffU & (vlTOPp->ALU__DOT___T_96 
+    vlTOPp->ALU__DOT___T_107 = ((0xff00ffU & (vlTOPp->ALU__DOT___T_97 
 					      >> 8U)) 
-				| (0xff00ff00U & (vlTOPp->ALU__DOT___T_96 
+				| (0xff00ff00U & (vlTOPp->ALU__DOT___T_97 
 						  << 8U)));
 }
 
@@ -227,13 +227,13 @@ VL_INLINE_OPT void VALU::_combo__TOP__9(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_combo__TOP__9\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_106 = ((0xff00ffU & (vlTOPp->ALU__DOT___T_96 
+    vlTOPp->ALU__DOT___T_107 = ((0xff00ffU & (vlTOPp->ALU__DOT___T_97 
 					      >> 8U)) 
-				| (0xff00ff00U & (vlTOPp->ALU__DOT___T_96 
+				| (0xff00ff00U & (vlTOPp->ALU__DOT___T_97 
 						  << 8U)));
-    vlTOPp->ALU__DOT___T_116 = ((0xf0f0f0fU & (vlTOPp->ALU__DOT___T_106 
+    vlTOPp->ALU__DOT___T_117 = ((0xf0f0f0fU & (vlTOPp->ALU__DOT___T_107 
 					       >> 4U)) 
-				| (0xf0f0f0f0U & (vlTOPp->ALU__DOT___T_106 
+				| (0xf0f0f0f0U & (vlTOPp->ALU__DOT___T_107 
 						  << 4U)));
 }
 
@@ -241,13 +241,13 @@ void VALU::_settle__TOP__10(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_settle__TOP__10\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_116 = ((0xf0f0f0fU & (vlTOPp->ALU__DOT___T_106 
+    vlTOPp->ALU__DOT___T_117 = ((0xf0f0f0fU & (vlTOPp->ALU__DOT___T_107 
 					       >> 4U)) 
-				| (0xf0f0f0f0U & (vlTOPp->ALU__DOT___T_106 
+				| (0xf0f0f0f0U & (vlTOPp->ALU__DOT___T_107 
 						  << 4U)));
-    vlTOPp->ALU__DOT___T_126 = ((0x33333333U & (vlTOPp->ALU__DOT___T_116 
+    vlTOPp->ALU__DOT___T_127 = ((0x33333333U & (vlTOPp->ALU__DOT___T_117 
 						>> 2U)) 
-				| (0xccccccccU & (vlTOPp->ALU__DOT___T_116 
+				| (0xccccccccU & (vlTOPp->ALU__DOT___T_117 
 						  << 2U)));
 }
 
@@ -255,34 +255,34 @@ VL_INLINE_OPT void VALU::_combo__TOP__11(VALU__Syms* __restrict vlSymsp) {
     VL_DEBUG_IF(VL_PRINTF("    VALU::_combo__TOP__11\n"); );
     VALU* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->ALU__DOT___T_126 = ((0x33333333U & (vlTOPp->ALU__DOT___T_116 
+    vlTOPp->ALU__DOT___T_127 = ((0x33333333U & (vlTOPp->ALU__DOT___T_117 
 						>> 2U)) 
-				| (0xccccccccU & (vlTOPp->ALU__DOT___T_116 
+				| (0xccccccccU & (vlTOPp->ALU__DOT___T_117 
 						  << 2U)));
     vlTOPp->io_out = (((0U == (IData)(vlTOPp->io_fn)) 
 		       | (8U == (IData)(vlTOPp->io_fn)))
-		       ? (IData)(vlTOPp->ALU__DOT___T_17)
+		       ? (IData)(vlTOPp->ALU__DOT___T_18)
 		       : (((0xaU == (IData)(vlTOPp->io_fn)) 
 			   | (0xbU == (IData)(vlTOPp->io_fn)))
 			   ? (1U & (((1U & (vlTOPp->io_in1 
 					    >> 0x1fU)) 
 				     == (1U & (vlTOPp->io_in2 
 					       >> 0x1fU)))
-				     ? (IData)((vlTOPp->ALU__DOT___T_17 
+				     ? (IData)((vlTOPp->ALU__DOT___T_18 
 						>> 0x1fU))
 				     : ((1U & (IData)(vlTOPp->io_fn))
 					 ? (vlTOPp->io_in2 
 					    >> 0x1fU)
 					 : (vlTOPp->io_in1 
 					    >> 0x1fU))))
-			   : ((IData)(vlTOPp->ALU__DOT___T_28)
-			       ? (IData)(vlTOPp->ALU__DOT___T_85)
+			   : ((IData)(vlTOPp->ALU__DOT___T_29)
+			       ? (IData)(vlTOPp->ALU__DOT___T_86)
 			       : ((1U == (IData)(vlTOPp->io_fn))
 				   ? ((0x55555555U 
-				       & (vlTOPp->ALU__DOT___T_126 
+				       & (vlTOPp->ALU__DOT___T_127 
 					  >> 1U)) | 
 				      (0xaaaaaaaaU 
-				       & (vlTOPp->ALU__DOT___T_126 
+				       & (vlTOPp->ALU__DOT___T_127 
 					  << 1U))) : 
 				  ((7U == (IData)(vlTOPp->io_fn))
 				    ? (vlTOPp->io_in1 
@@ -302,28 +302,28 @@ void VALU::_settle__TOP__12(VALU__Syms* __restrict vlSymsp) {
     // Body
     vlTOPp->io_out = (((0U == (IData)(vlTOPp->io_fn)) 
 		       | (8U == (IData)(vlTOPp->io_fn)))
-		       ? (IData)(vlTOPp->ALU__DOT___T_17)
+		       ? (IData)(vlTOPp->ALU__DOT___T_18)
 		       : (((0xaU == (IData)(vlTOPp->io_fn)) 
 			   | (0xbU == (IData)(vlTOPp->io_fn)))
 			   ? (1U & (((1U & (vlTOPp->io_in1 
 					    >> 0x1fU)) 
 				     == (1U & (vlTOPp->io_in2 
 					       >> 0x1fU)))
-				     ? (IData)((vlTOPp->ALU__DOT___T_17 
+				     ? (IData)((vlTOPp->ALU__DOT___T_18 
 						>> 0x1fU))
 				     : ((1U & (IData)(vlTOPp->io_fn))
 					 ? (vlTOPp->io_in2 
 					    >> 0x1fU)
 					 : (vlTOPp->io_in1 
 					    >> 0x1fU))))
-			   : ((IData)(vlTOPp->ALU__DOT___T_28)
-			       ? (IData)(vlTOPp->ALU__DOT___T_85)
+			   : ((IData)(vlTOPp->ALU__DOT___T_29)
+			       ? (IData)(vlTOPp->ALU__DOT___T_86)
 			       : ((1U == (IData)(vlTOPp->io_fn))
 				   ? ((0x55555555U 
-				       & (vlTOPp->ALU__DOT___T_126 
+				       & (vlTOPp->ALU__DOT___T_127 
 					  >> 1U)) | 
 				      (0xaaaaaaaaU 
-				       & (vlTOPp->ALU__DOT___T_126 
+				       & (vlTOPp->ALU__DOT___T_127 
 					  << 1U))) : 
 				  ((7U == (IData)(vlTOPp->io_fn))
 				    ? (vlTOPp->io_in1 
@@ -394,18 +394,18 @@ void VALU::_ctor_var_reset() {
     io_in1 = VL_RAND_RESET_I(32);
     io_out = VL_RAND_RESET_I(32);
     io_adder_out = VL_RAND_RESET_I(32);
-    ALU__DOT___T_17 = VL_RAND_RESET_Q(33);
-    ALU__DOT___T_28 = VL_RAND_RESET_I(1);
-    ALU__DOT___T_39 = VL_RAND_RESET_I(32);
-    ALU__DOT___T_49 = VL_RAND_RESET_I(32);
-    ALU__DOT___T_59 = VL_RAND_RESET_I(32);
-    ALU__DOT___T_69 = VL_RAND_RESET_I(32);
+    ALU__DOT___T_18 = VL_RAND_RESET_Q(33);
+    ALU__DOT___T_29 = VL_RAND_RESET_I(1);
+    ALU__DOT___T_40 = VL_RAND_RESET_I(32);
+    ALU__DOT___T_50 = VL_RAND_RESET_I(32);
+    ALU__DOT___T_60 = VL_RAND_RESET_I(32);
+    ALU__DOT___T_70 = VL_RAND_RESET_I(32);
     ALU__DOT__shin = VL_RAND_RESET_I(32);
-    ALU__DOT___T_85 = VL_RAND_RESET_Q(33);
-    ALU__DOT___T_96 = VL_RAND_RESET_I(32);
-    ALU__DOT___T_106 = VL_RAND_RESET_I(32);
-    ALU__DOT___T_116 = VL_RAND_RESET_I(32);
-    ALU__DOT___T_126 = VL_RAND_RESET_I(32);
+    ALU__DOT___T_86 = VL_RAND_RESET_Q(33);
+    ALU__DOT___T_97 = VL_RAND_RESET_I(32);
+    ALU__DOT___T_107 = VL_RAND_RESET_I(32);
+    ALU__DOT___T_117 = VL_RAND_RESET_I(32);
+    ALU__DOT___T_127 = VL_RAND_RESET_I(32);
     __Vm_traceActivity = VL_RAND_RESET_I(32);
 }
 

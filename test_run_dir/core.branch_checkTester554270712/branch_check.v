@@ -12,13 +12,13 @@
 `endif
 
 module branch_check(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_rs1,
   input  [31:0] io_rs2,
-  output  io_br_eq,
-  output  io_br_lt,
-  output  io_br_ltu
+  output        io_br_eq,
+  output        io_br_lt,
+  output        io_br_ltu
 );
   wire [31:0] _T_16;
   wire [31:0] _T_17;

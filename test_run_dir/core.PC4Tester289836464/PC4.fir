@@ -1,4 +1,4 @@
-;buildInfoPackage: chisel3, version: 3.0-SNAPSHOT, scalaVersion: 2.11.7, sbtVersion: 0.13.11, builtAtString: 2016-12-12 22:28:40.596, builtAtMillis: 1481581720596
+;buildInfoPackage: chisel3, version: 3.0-SNAPSHOT, scalaVersion: 2.11.7, sbtVersion: 0.13.12, builtAtString: 2017-03-24 17:25:51.022, builtAtMillis: 1490376351022
 circuit PC4 : 
   module PC4 : 
     input clock : Clock
@@ -7,7 +7,7 @@ circuit PC4 :
     
     io is invalid
     io is invalid
-    reg _T_6 : UInt, clock @[PC4.scala 11:20]
-    _T_6 <= io.PC4_in @[PC4.scala 11:20]
-    io.PC4_out <= _T_6 @[PC4.scala 11:14]
+    reg _T_7 : UInt, clock @[PC4.scala 11:20]
+    _T_7 <= io.PC4_in @[PC4.scala 11:20]
+    io.PC4_out <= _T_7 @[PC4.scala 11:14]
     

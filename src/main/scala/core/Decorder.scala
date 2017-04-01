@@ -15,11 +15,12 @@ class Decorder extends Module{
         val WB_sel = Output(UInt(width = 2))
         val BRJMP_sel = Output(UInt(width = 1))
         val JBType_sel = Output(UInt(width = 1))
-        val PC_MUX_sel = Output(UInt(width = 2))
+        val PC_MUX_sel1 = Output(UInt(width = 1))
         val WEN_RegFile = Output(UInt(width = 1))
         val Mem_rd = Output(UInt(width = 1))
         val Mem_wr_valid = Output(UInt(width = 1))
         val ALU_func = Output(UInt(width = 4))
+        val IR_skip_Mux_sel = Output(UInt(width = 1))
 	})
 	val rs2 = !io.IR(6) && io.IR(5) && io.IR(4)
     val i = (!io.IR(5) && !io.IR(2)) || (!io.IR(4) && !io.IR(3) && io.IR(2))
@@ -96,32 +97,34 @@ class Decorder extends Module{
 
     val jmp_jalr = io.IR(6) && io.IR(2)
     val br = io.IR(6) && !io.IR(4) && !io.IR(2)
-    val pc4 = !io.IR(6) || io.IR(4)
+    //val pc4 = !io.IR(6) || io.IR(4)
 
-    when((jmp_jalr || br)) {
-       io.PC_MUX_sel := UInt(2,2)
-    }
-when(pc4){
-    when(io.Mem_rd === UInt(1,1) || io.Mem_wr_valid === UInt(1,1)){
-        when(io.DataMem_rdy === UInt(0,1)) {
-            io.PC_MUX_sel := UInt(1,2) //STALL
-        }
-        when(io.DataMem_rdy === UInt(1,1)) {
+    when(jmp_jalr || (br && branch)) {
+       io.PC_MUX_sel1 := UInt(1,1)
+    }.otherwise {
+       io.PC_MUX_sel1 := UInt(0,1)
+        /*when(io.Mem_rd === UInt(1,1) || io.Mem_wr_valid === UInt(1,1)){
+            when(io.DataMem_rdy === UInt(0,1)) {
+                io.PC_MUX_sel := UInt(1,2) //STALL
+            }
+            when(io.DataMem_rdy === UInt(1,1)) {
+                io.PC_MUX_sel := UInt(0,2) //PC+4
+            }
+        }.otherwise{
             io.PC_MUX_sel := UInt(0,2) //PC+4
-        }
-    }.otherwise{
-        io.PC_MUX_sel := UInt(0,2) //PC+4
+        }*/
     }
-}
 
 
-    io.WEN_RegFile := (!io.IR(6) && io.IR(4) && !io.IR(3)) || (!io.IR(6) && !io.IR(5) && !io.IR(3) && !io.IR(2)) || (io.IR(6) && io.IR(5) && !io.IR(4) && !io.IR(2))
+    //io.WEN_RegFile := (!io.IR(6) && io.IR(4) && !io.IR(3)) || (!io.IR(6) && !io.IR(5) && !io.IR(3) && !io.IR(2)) || (io.IR(6) && io.IR(5) && !io.IR(4) && !io.IR(2))
+    io.WEN_RegFile := ((!io.IR(6) && io.IR(4) && !io.IR(3)) || (!io.IR(6) && !io.IR(5) && !io.IR(3) && !io.IR(2)) || (io.IR(6) && io.IR(5) && !io.IR(4) && !io.IR(2))) && (!(io.IR(6) && io.IR(5) && !io.IR(4) && !io.IR(3) && !io.IR(2)))
 
     io.Mem_rd := !io.IR(5) && !io.IR(4) && !io.IR(3)
     io.Mem_wr_valid := !io.IR(6) && io.IR(5) && !io.IR(4)
 
-    val ALU_func4_bit  = (!io.IR(6) && io.IR(5) && io.IR(4) && !io.IR(2) && !io.IR(14) && io.IR(13)) || io.IR(30)
-
+    //val ALU_func4_bit  = (!io.IR(6) && io.IR(5) && io.IR(4) && !io.IR(2) && !io.IR(14) && io.IR(13)) || io.IR(30)
+    val ALU_func4_bit  = ((io.IR(30)&&io.IR(14)&& !io.IR(13)&&io.IR(12)&&io.IR(4)) || (io.IR(30)&& !io.IR(14)&& !io.IR(13)&& !io.IR(12)&& !io.IR(5)&& !io.IR(4)))&&(!io.IR(6)&& !io.IR(3)&& !io.IR(2))
+// bit changed
 
     when (!io.IR(6) && io.IR(4) && !io.IR(2)){
         when (ALU_func4_bit) {
@@ -132,5 +135,7 @@ when(pc4){
     }.otherwise {
         io.ALU_func := UInt(0,4)
     }
+
+    io.IR_skip_Mux_sel := (br && branch) || jmp_jalr
     
 }

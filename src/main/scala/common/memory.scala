@@ -7,13 +7,13 @@ import Constants._
 trait MemOpConstants 
 {
 	val MT_X  = UInt(0, 3)	// memory transfer type
-	val MT_B  = UInt(1, 3)
-	val MT_H  = UInt(2, 3)
-	val MT_W  = UInt(3, 3)
-	val MT_D  = UInt(4, 3)
-	val MT_BU = UInt(5, 3)
-	val MT_HU = UInt(6, 3)
-	val MT_WU = UInt(7, 3)
+	val MT_B  = UInt(0, 3)
+	val MT_H  = UInt(1, 3)
+	val MT_W  = UInt(2, 3)
+	val MT_D  = UInt(3, 3)
+	val MT_BU = UInt(4, 3)
+	val MT_HU = UInt(5, 3)
+	val MT_WU = UInt(6, 3)
 
 	val M_X   = UInt("b0", 1)	// access type
 	val M_RD  = UInt("b0", 1) 	// load
@@ -50,21 +50,22 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 		val port = Vec(num_ports, Flipped(new MemPortIO(data_width = config.xprlen)))	
 	})
 	
-	val num_bytes_per_line = 4
-	val num_lines = num_bytes/num_bytes_per_line
+	val num_bytes_per_line 	= 4
+	val num_lines 		= num_bytes/num_bytes_per_line
 	
 	val lsb_idx = log2Up(num_bytes_per_line)	// index of lsb in address
 	
-	val chipMem = Mem(Vec(4, UInt(width = 8)), num_lines)	// memory
+	val chipMem = Seq.fill(2)(Mem(Vec(4, UInt(width = 8)), num_lines/2))	// memory
 	
 	for (i <- 0 until num_ports)
 	{
-		io.port(i).resp.valid := Reg(next = io.port(i).req.valid)
+		io.port(i).resp.valid := Reg(init = Bool(false), next = io.port(i).req.valid)
 
 		io.port(i).req.ready := Bool(true) // for now
 
 		val req_valid      = io.port(i).req.valid
 		val req_addr       = io.port(i).req.bits.addr
+		//val req_addr       = Cat(io.port(i).req.bits.addr(31,15), UInt(i), io.port(i).req.bits.addr(13,0))
 		val req_data       = io.port(i).req.bits.data
 		val req_fn         = io.port(i).req.bits.fcn
 		val req_typ        = io.port(i).req.bits.typ
@@ -80,15 +81,15 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 		
 		if (seq_read)
 		{
-			 read_data := chipMem(r_data_idx)
+			 read_data := chipMem(i)(r_data_idx)
 			 rdata     := LoadDataGen((read_data.asUInt >> Reg(next=bit_shift_amt)), Reg(next=req_typ))
 		}
 		else
 		{
-			 read_data := chipMem.read(data_idx)
+			 read_data := chipMem(i).read(data_idx)
 			 //read_data := Vec(UInt(5), UInt(0), UInt(0), UInt(0))
 			 rdata     := LoadDataGen((read_data.asUInt >> bit_shift_amt), req_typ)
-			 //rdata     := StoreDataGen(req_data, req_typ).asUInt + UInt(5)
+			 //rdata     := (StoreMask(req_typ) << byte_shift_amt)
 		}
 		
 		io.port(i).resp.bits.data := rdata
@@ -102,7 +103,7 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 			 
 			 //val wmask = Seq(mask(31,24), mask(23,16), mask(15, 8), mask( 7, 0))
 
-			 chipMem.write(data_idx, wdata, wmask)
+			 chipMem(i).write(data_idx, wdata, wmask)
 		}
 		.elsewhen (req_valid && req_fn === M_RD)
 		{
@@ -114,27 +115,24 @@ class OnChipMemory(num_ports: Int = 2, num_bytes: Int = (1 << 15), seq_read: Boo
 
 object StoreDataGen
 {
-	def apply(din: Bits, typ: Bits): Vec[UInt] =
+	def apply(din: Bits, typ: UInt): Vec[UInt] =
 	{
-		val word 	= 	(typ.equals(MT_W)) || (typ.equals(MT_WU))
-		val half 	= 	(typ.equals(MT_H)) || (typ.equals(MT_HU))
-		val byte 	= 	(typ.equals(MT_B)) || (typ.equals(MT_BU))
+//		val word 	= 	(typ.equals(MT_W)) || (typ.equals(MT_WU))
+//		val half 	= 	(typ.equals(MT_H)) || (typ.equals(MT_HU))
+//		val byte 	= 	(typ.equals(MT_B)) || (typ.equals(MT_BU))
+
+	        val word 	= 	(typ === MT_W) || (typ === MT_WU)
+	        val half 	= 	(typ === MT_H) || (typ === MT_HU)
+	        val byte	= 	(typ === MT_B) || (typ === MT_BU)
 
 		val dout 	=  	Wire(Vec(4, UInt(8.W)))
-		dout 		:=  	Mux(Bool(byte), Vec(din( 7,0), din( 7,0), din( 7,0), din( 7,0)),
-					Mux(Bool(half), Vec(din( 7,0), din(15,8), din( 7,0), din(15,8)),
+		dout 		:=  	Mux(byte, Vec(din( 7,0), din( 7,0), din( 7,0), din( 7,0)),
+					Mux(half, Vec(din( 7,0), din(15,8), din( 7,0), din(15,8)),
 							Vec(din( 7,0), din(15,8), din(23,16), din(31,24))))
 //		dout 		:=  	Mux(Bool(byte), Vec(Seq.fill(4)(din(7,0))),
 //					Mux(Bool(half), Vec(Seq(din(15,8), din( 7,0), din(15,8), din( 7,0))),
 //							Vec(Seq(din(31,24), din(23,16), din(15,8), din( 7,0)))))
 
-//	        val word 	= 	(typ === MT_W) || (typ === MT_WU)
-//	        val half 	= 	(typ === MT_H) || (typ === MT_HU)
-//	        val byte	= 	(typ === MT_B) || (typ === MT_BU)
-
-//		val dout 	=  	Mux(byte, Vec(4, din( 7,0)),
-//					Mux(half, Vec(din(15,8), din( 7,0), din(15,8), din( 7,0)),
-//							Vec(din(31,24), din(23,16), din(15,8), din( 7,0))))
 
 		return dout
 	}

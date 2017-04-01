@@ -39,7 +39,7 @@ VM_PREFIX = VALU
 VM_MODPREFIX = VALU
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-Wno-undefined-bool-conversion -O1 -DTOP_TYPE=VALU -include VALU.h \
+	-Wno-undefined-bool-conversion -O1 -DTOP_TYPE=VALU -DVL_USER_FINISH -include VALU.h \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
@@ -50,7 +50,7 @@ VM_USER_CLASSES = \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	. \
+	/home/rathnayake/Documents/repo/riscv/test_run_dir/core.ALUTester2114735783 \
 
 
 ### Default rules...
@@ -62,7 +62,7 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-ALU-harness.o: ALU-harness.cpp
+ALU-harness.o: /home/rathnayake/Documents/repo/riscv/test_run_dir/core.ALUTester2114735783/ALU-harness.cpp
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)

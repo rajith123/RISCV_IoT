@@ -12,7 +12,7 @@ poke(c.io.br_ltu,0)
 poke(c.io.DataMem_rdy, 1)
               step(1)
              
-              expect(c.io.PC_MUX_sel, 0)
+              expect(c.io.Mem_rd, 0)
 }
 
 class DecorderTester extends ChiselFlatSpec {

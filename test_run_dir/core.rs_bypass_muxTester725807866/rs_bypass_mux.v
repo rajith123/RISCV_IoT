@@ -12,11 +12,11 @@
 `endif
 
 module rs_bypass_mux(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_rs,
   input  [31:0] io_bypass,
-  input   io_rs_bypass_mux_sel,
+  input         io_rs_bypass_mux_sel,
   output [31:0] io_to_rs_mux
 );
   wire [31:0] _T_12;

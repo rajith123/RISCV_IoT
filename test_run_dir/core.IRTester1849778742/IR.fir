@@ -1,4 +1,4 @@
-;buildInfoPackage: chisel3, version: 3.0-SNAPSHOT, scalaVersion: 2.11.7, sbtVersion: 0.13.11, builtAtString: 2017-02-17 20:06:28.152, builtAtMillis: 1487361988152
+;buildInfoPackage: chisel3, version: 3.0-SNAPSHOT, scalaVersion: 2.11.7, sbtVersion: 0.13.12, builtAtString: 2017-03-24 17:25:51.022, builtAtMillis: 1490376351022
 circuit IR : 
   module IR : 
     input clock : Clock
@@ -7,7 +7,7 @@ circuit IR :
     
     io is invalid
     io is invalid
-    reg _T_6 : UInt, clock @[IR.scala 11:19]
-    _T_6 <= io.IR_in @[IR.scala 11:19]
-    io.IR_out <= _T_6 @[IR.scala 11:13]
+    reg _T_7 : UInt, clock @[IR.scala 11:19]
+    _T_7 <= io.IR_in @[IR.scala 11:19]
+    io.IR_out <= _T_7 @[IR.scala 11:13]
     

@@ -12,24 +12,24 @@
 `endif
 
 module Decorder(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_IR,
-  input   io_br_eq,
-  input   io_br_lt,
-  input   io_br_ltu,
-  input   io_DataMem_rdy,
-  output  io_BUS_A_sel,
-  output [1:0] io_BUS_B_sel,
-  output [1:0] io_WB_sel,
-  output  io_BRJMP_sel,
-  output  io_JBType_sel,
-  output  io_PC_MUX_sel1,
-  output  io_WEN_RegFile,
-  output  io_Mem_rd,
-  output  io_Mem_wr_valid,
-  output [3:0] io_ALU_func,
-  output  io_IR_skip_Mux_sel
+  input         io_br_eq,
+  input         io_br_lt,
+  input         io_br_ltu,
+  input         io_DataMem_rdy,
+  output        io_BUS_A_sel,
+  output [1:0]  io_BUS_B_sel,
+  output [1:0]  io_WB_sel,
+  output        io_BRJMP_sel,
+  output        io_JBType_sel,
+  output        io_PC_MUX_sel1,
+  output        io_WEN_RegFile,
+  output        io_Mem_rd,
+  output        io_Mem_wr_valid,
+  output [3:0]  io_ALU_func,
+  output        io_IR_skip_Mux_sel
 );
   wire  _T_34;
   wire  _T_36;

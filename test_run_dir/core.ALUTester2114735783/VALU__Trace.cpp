@@ -41,12 +41,12 @@ void VALU::traceChgThis__2(VALU__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, u
     if (0 && vcdp && c) {}  // Prevent unused
     // Body
     {
-	vcdp->chgBus  (c+1,((IData)(vlTOPp->ALU__DOT___T_17)),32);
+	vcdp->chgBus  (c+1,((IData)(vlTOPp->ALU__DOT___T_18)),32);
 	vcdp->chgBus  (c+2,(vlTOPp->ALU__DOT__shin),32);
-	vcdp->chgBus  (c+3,((IData)(vlTOPp->ALU__DOT___T_85)),32);
-	vcdp->chgBus  (c+4,(((0x55555555U & (vlTOPp->ALU__DOT___T_126 
+	vcdp->chgBus  (c+3,((IData)(vlTOPp->ALU__DOT___T_86)),32);
+	vcdp->chgBus  (c+4,(((0x55555555U & (vlTOPp->ALU__DOT___T_127 
 					     >> 1U)) 
-			     | (0xaaaaaaaaU & (vlTOPp->ALU__DOT___T_126 
+			     | (0xaaaaaaaaU & (vlTOPp->ALU__DOT___T_127 
 					       << 1U)))),32);
     }
 }
@@ -68,7 +68,7 @@ void VALU::traceChgThis__3(VALU__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, u
 					    >> 0x1fU)) 
 				     == (1U & (vlTOPp->io_in2 
 					       >> 0x1fU)))
-				     ? (IData)((vlTOPp->ALU__DOT___T_17 
+				     ? (IData)((vlTOPp->ALU__DOT___T_18 
 						>> 0x1fU))
 				     : ((1U & (IData)(vlTOPp->io_fn))
 					 ? (vlTOPp->io_in2 
@@ -87,7 +87,7 @@ void VALU::traceChgThis__3(VALU__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, u
 				       : vlTOPp->io_in1)))),32);
 	vcdp->chgBus  (c+15,((((0U == (IData)(vlTOPp->io_fn)) 
 			       | (8U == (IData)(vlTOPp->io_fn)))
-			       ? (IData)(vlTOPp->ALU__DOT___T_17)
+			       ? (IData)(vlTOPp->ALU__DOT___T_18)
 			       : (((0xaU == (IData)(vlTOPp->io_fn)) 
 				   | (0xbU == (IData)(vlTOPp->io_fn)))
 				   ? (1U & (((1U & 
@@ -97,7 +97,7 @@ void VALU::traceChgThis__3(VALU__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, u
 						 & (vlTOPp->io_in2 
 						    >> 0x1fU)))
 					     ? (IData)(
-						       (vlTOPp->ALU__DOT___T_17 
+						       (vlTOPp->ALU__DOT___T_18 
 							>> 0x1fU))
 					     : ((1U 
 						 & (IData)(vlTOPp->io_fn))
@@ -107,14 +107,14 @@ void VALU::traceChgThis__3(VALU__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, u
 						 : 
 						(vlTOPp->io_in1 
 						 >> 0x1fU))))
-				   : ((IData)(vlTOPp->ALU__DOT___T_28)
-				       ? (IData)(vlTOPp->ALU__DOT___T_85)
+				   : ((IData)(vlTOPp->ALU__DOT___T_29)
+				       ? (IData)(vlTOPp->ALU__DOT___T_86)
 				       : ((1U == (IData)(vlTOPp->io_fn))
 					   ? ((0x55555555U 
-					       & (vlTOPp->ALU__DOT___T_126 
+					       & (vlTOPp->ALU__DOT___T_127 
 						  >> 1U)) 
 					      | (0xaaaaaaaaU 
-						 & (vlTOPp->ALU__DOT___T_126 
+						 & (vlTOPp->ALU__DOT___T_127 
 						    << 1U)))
 					   : ((7U == (IData)(vlTOPp->io_fn))
 					       ? (vlTOPp->io_in1 

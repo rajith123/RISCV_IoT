@@ -12,12 +12,12 @@
 `endif
 
 module pc_mux(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_pc_4,
   input  [31:0] io_pc,
   input  [31:0] io_jmp_br,
-  input  [1:0] io_pc_sel,
+  input  [1:0]  io_pc_sel,
   output [31:0] io_to_pc
 );
   wire  _T_12;

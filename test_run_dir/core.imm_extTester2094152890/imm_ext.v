@@ -12,8 +12,8 @@
 `endif
 
 module imm_ext(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_ir_in,
   output [31:0] io_imm_i_sext,
   output [31:0] io_imm_s_sext,

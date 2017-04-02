@@ -12,11 +12,11 @@
 `endif
 
 module jmp_br_mux(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_jmp,
   input  [31:0] io_br,
-  input   io_jmp_br_mux_sel,
+  input         io_jmp_br_mux_sel,
   output [31:0] io_to_adder
 );
   wire  _T_10;

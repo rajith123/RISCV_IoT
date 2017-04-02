@@ -12,10 +12,10 @@
 `endif
 
 module IR_skip_Mux(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_inst_mem,
-  input   io_IR_skip_Mux_sel,
+  input         io_IR_skip_Mux_sel,
   output [31:0] io_to_ir
 );
   wire [31:0] _T_11;

@@ -12,11 +12,11 @@
 `endif
 
 module alu_rs1_mux(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_rs1,
   input  [31:0] io_imm_u,
-  input   io_rs1_mux_sel,
+  input         io_rs1_mux_sel,
   output [31:0] io_to_alu_a
 );
   wire  _T_10;

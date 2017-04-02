@@ -12,11 +12,11 @@
 `endif
 
 module PC_Stall_Decode(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_IR,
-  input   io_DataMem_rdy,
-  output  io_PC_MUX_sel0
+  input         io_DataMem_rdy,
+  output        io_PC_MUX_sel0
 );
   wire  _T_8;
   wire  _T_10;

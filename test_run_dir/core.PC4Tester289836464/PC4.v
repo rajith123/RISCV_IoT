@@ -12,14 +12,14 @@
 `endif
 
 module PC4(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_PC4_in,
   output [31:0] io_PC4_out
 );
-  reg [31:0] _T_6;
+  reg [31:0] _T_7;
   reg [31:0] _GEN_0;
-  assign io_PC4_out = _T_6;
+  assign io_PC4_out = _T_7;
 `ifdef RANDOMIZE
   integer initvar;
   initial begin
@@ -28,11 +28,11 @@ module PC4(
     `endif
   `ifdef RANDOMIZE_REG_INIT
   _GEN_0 = {1{$random}};
-  _T_6 = _GEN_0[31:0];
+  _T_7 = _GEN_0[31:0];
   `endif
   end
 `endif
   always @(posedge clock) begin
-    _T_6 <= io_PC4_in;
+    _T_7 <= io_PC4_in;
   end
 endmodule

@@ -12,12 +12,12 @@
 `endif
 
 module reg_write_mux(
-  input   clock,
-  input   reset,
+  input         clock,
+  input         reset,
   input  [31:0] io_data_mem,
   input  [31:0] io_alu_out,
   input  [31:0] io_pc_4,
-  input  [1:0] io_reg_write_mux_sel,
+  input  [1:0]  io_reg_write_mux_sel,
   output [31:0] io_to_reg
 );
   wire  _T_12;
